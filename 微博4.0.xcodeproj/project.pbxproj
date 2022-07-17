@@ -44,9 +44,11 @@
 		35E7A4E62837AA8600B9BD6E /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4E52837AA8600B9BD6E /* ListTableViewCell.m */; };
 		35F3BD3528377B1900CDA475 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3BD3428377B1900CDA475 /* WebViewController.m */; };
 		35F3BD3828378A7300CDA475 /* SelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3BD3728378A7300CDA475 /* SelectionView.m */; };
+		81937813F3C0B1D7717FE806 /* libPods-微博4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF43B4782D43F721CD8C05 /* libPods-微博4.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08EF43B4782D43F721CD8C05 /* libPods-微博4.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-微博4.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35248D0A2836887F008FB8EB /* 微博4.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "微博4.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35248D0D2836887F008FB8EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		35248D0E2836887F008FB8EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,6 +121,8 @@
 		35F3BD3428377B1900CDA475 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		35F3BD3628378A7300CDA475 /* SelectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectionView.h; sourceTree = "<group>"; };
 		35F3BD3728378A7300CDA475 /* SelectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectionView.m; sourceTree = "<group>"; };
+		992A6FB7D193C35F95FD7424 /* Pods-微博4.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-微博4.0.release.xcconfig"; path = "Target Support Files/Pods-微博4.0/Pods-微博4.0.release.xcconfig"; sourceTree = "<group>"; };
+		CCE3DDBEE32AA64B93F8A770 /* Pods-微博4.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-微博4.0.debug.xcconfig"; path = "Target Support Files/Pods-微博4.0/Pods-微博4.0.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81937813F3C0B1D7717FE806 /* libPods-微博4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +145,8 @@
 				35248D2928368DAA008FB8EB /* View */,
 				35248D2728368DA4008FB8EB /* Model */,
 				35248D0B2836887F008FB8EB /* Products */,
+				C323D9136F4C1F6EE6F945E2 /* Pods */,
+				79D1C474C6EB459F14343F79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -330,6 +337,24 @@
 			path = "我的";
 			sourceTree = "<group>";
 		};
+		79D1C474C6EB459F14343F79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08EF43B4782D43F721CD8C05 /* libPods-微博4.0.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C323D9136F4C1F6EE6F945E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCE3DDBEE32AA64B93F8A770 /* Pods-微博4.0.debug.xcconfig */,
+				992A6FB7D193C35F95FD7424 /* Pods-微博4.0.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -337,9 +362,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35248D2328368880008FB8EB /* Build configuration list for PBXNativeTarget "微博4.0" */;
 			buildPhases = (
+				B85783124BE2E5C5CFEB0BAB /* [CP] Check Pods Manifest.lock */,
 				35248D062836887F008FB8EB /* Sources */,
 				35248D072836887F008FB8EB /* Frameworks */,
 				35248D082836887F008FB8EB /* Resources */,
+				02786FA7A1F0F2384E8B8EAB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -394,6 +421,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02786FA7A1F0F2384E8B8EAB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-微博4.0/Pods-微博4.0-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-微博4.0/Pods-微博4.0-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-微博4.0/Pods-微博4.0-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B85783124BE2E5C5CFEB0BAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-微博4.0-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		35248D062836887F008FB8EB /* Sources */ = {
@@ -571,6 +640,7 @@
 		};
 		35248D2428368880008FB8EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCE3DDBEE32AA64B93F8A770 /* Pods-微博4.0.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -597,6 +667,7 @@
 		};
 		35248D2528368880008FB8EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 992A6FB7D193C35F95FD7424 /* Pods-微博4.0.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
