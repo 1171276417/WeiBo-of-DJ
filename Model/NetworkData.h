@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "GetListItem.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class GetListItem;//声明getListItem
