@@ -36,6 +36,9 @@
 		3560EEE52836C95700D9EBF2 /* PostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEE42836C95700D9EBF2 /* PostView.m */; };
 		3560EEE82836CA1500D9EBF2 /* PostNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEE72836CA1500D9EBF2 /* PostNavigationView.m */; };
 		3560EEEB2836D37B00D9EBF2 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEEA2836D37B00D9EBF2 /* PostTableViewCell.m */; };
+		35C8E84328844A670006109A /* PostCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84228844A670006109A /* PostCommentView.m */; };
+		35C8E84628844A860006109A /* PostCommentNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84528844A860006109A /* PostCommentNavigationView.m */; };
+		35C8E84928844AEA0006109A /* PostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84828844AEA0006109A /* PostCommentViewController.m */; };
 		35E7A4D52837A7A500B9BD6E /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4D42837A7A500B9BD6E /* MyView.m */; };
 		35E7A4D92837A87E00B9BD6E /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4D82837A87E00B9BD6E /* CollectionViewController.m */; };
 		35E7A4DC2837A88A00B9BD6E /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4DB2837A88A00B9BD6E /* HistoryViewController.m */; };
@@ -105,6 +108,12 @@
 		3560EEE72836CA1500D9EBF2 /* PostNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostNavigationView.m; sourceTree = "<group>"; };
 		3560EEE92836D37B00D9EBF2 /* PostTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
 		3560EEEA2836D37B00D9EBF2 /* PostTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		35C8E84128844A670006109A /* PostCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCommentView.h; sourceTree = "<group>"; };
+		35C8E84228844A670006109A /* PostCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCommentView.m; sourceTree = "<group>"; };
+		35C8E84428844A860006109A /* PostCommentNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCommentNavigationView.h; sourceTree = "<group>"; };
+		35C8E84528844A860006109A /* PostCommentNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCommentNavigationView.m; sourceTree = "<group>"; };
+		35C8E84728844AEA0006109A /* PostCommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCommentViewController.h; sourceTree = "<group>"; };
+		35C8E84828844AEA0006109A /* PostCommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCommentViewController.m; sourceTree = "<group>"; };
 		35E7A4D32837A7A500B9BD6E /* MyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
 		35E7A4D42837A7A500B9BD6E /* MyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		35E7A4D72837A87E00B9BD6E /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -232,6 +241,10 @@
 				3560EED82836B25900D9EBF2 /* WeiboView.m */,
 				353A2C45283864B00039B84A /* WeiboNavigationView.h */,
 				353A2C46283864B00039B84A /* WeiboNavigationView.m */,
+				35C8E84128844A670006109A /* PostCommentView.h */,
+				35C8E84228844A670006109A /* PostCommentView.m */,
+				35C8E84428844A860006109A /* PostCommentNavigationView.h */,
+				35C8E84528844A860006109A /* PostCommentNavigationView.m */,
 			);
 			path = "详细内容评论";
 			sourceTree = "<group>";
@@ -293,6 +306,8 @@
 				3560EEE12836C90800D9EBF2 /* PostViewController.m */,
 				35F3BD3328377B1900CDA475 /* WebViewController.h */,
 				35F3BD3428377B1900CDA475 /* WebViewController.m */,
+				35C8E84728844AEA0006109A /* PostCommentViewController.h */,
+				35C8E84828844AEA0006109A /* PostCommentViewController.m */,
 			);
 			path = "主页";
 			sourceTree = "<group>";
@@ -351,7 +366,6 @@
 				CCE3DDBEE32AA64B93F8A770 /* Pods-微博4.0.debug.xcconfig */,
 				992A6FB7D193C35F95FD7424 /* Pods-微博4.0.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -471,10 +485,13 @@
 			files = (
 				35248D3828369080008FB8EB /* HomeView.m in Sources */,
 				353A2C4428385E070039B84A /* HistorySearchView.m in Sources */,
+				35C8E84628844A860006109A /* PostCommentNavigationView.m in Sources */,
 				35E7A4DC2837A88A00B9BD6E /* HistoryViewController.m in Sources */,
 				35248D4728369FEB008FB8EB /* WeiboViewController.m in Sources */,
+				35C8E84928844AEA0006109A /* PostCommentViewController.m in Sources */,
 				35248D152836887F008FB8EB /* ViewController.m in Sources */,
 				35248D3B28369095008FB8EB /* HomeTableViewCell.m in Sources */,
+				35C8E84328844A670006109A /* PostCommentView.m in Sources */,
 				3560EEE52836C95700D9EBF2 /* PostView.m in Sources */,
 				35248D4428369360008FB8EB /* PostListItem.m in Sources */,
 				3560EEDF2836C85400D9EBF2 /* NavigationBarView.m in Sources */,

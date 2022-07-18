@@ -15,6 +15,8 @@
     
     /**网页链接*/
     [self.btnURL addTarget:self action:@selector(Loadurl) forControlEvents:UIControlEventTouchUpInside];
+    /**评论*/
+    [self.btncomments addTarget:self action:@selector(Loadcomment) forControlEvents:(UIControlEventTouchUpInside)];
     
 }
 
@@ -23,13 +25,16 @@
     single.URLString=_urlstr;
     NSNotification *note=[NSNotification notificationWithName:@"点击进入网址" object:self];
     [[NSNotificationCenter defaultCenter] postNotification:note];
-    
-//    WebViewController *webVC=[[WebViewController alloc] init];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:webVC selector:@selector(geturl:) name:@"传网址" object:nil];
     NSNotification *note1=[NSNotification notificationWithName:@"传网址" object:nil userInfo:_dicURL];
     [[NSNotificationCenter defaultCenter] postNotification:note1];  
 }
+
+- (void)Loadcomment{
+    NSNotification *note = [NSNotification notificationWithName:@"评论" object:self];
+    [[NSNotificationCenter defaultCenter] postNotification:note];
+}
+
+
 
 
 /**设置数据*/
