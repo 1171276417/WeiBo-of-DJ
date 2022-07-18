@@ -6,6 +6,7 @@
 //
 
 #import "WeiboViewController.h"
+#import "SDAutoLayout.h"
 
 @interface WeiboViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -122,8 +123,11 @@
     }
     /**后面为评论区*/
     else {
-        [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
-        return self.commentcell.CommentCellHeight;
+//        [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
+//        return self.commentcell.CommentCellHeight;
+        return [self.weiboview.tableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.CommentArray[indexPath.row-1] keyPath:@"model" cellClass:[CommentTableViewCell class] contentViewWidth:390];
+
+
     }
 }
 
@@ -148,8 +152,13 @@
         if(!self.commentcell){
             self.commentcell=[[CommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDD];
         }
-            [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
+//            [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
+//        return self.commentcell;
+        self.commentcell.model = (GetListItem *)single.CommentArray[indexPath.row-1];
+        [self.commentcell useCellFrameCacheWithIndexPath:indexPath tableView:self.weiboview.tableview];
         return self.commentcell;
+        
+        
             
     }
 }

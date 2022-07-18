@@ -6,6 +6,7 @@
 //
 
 #import "CommentTableViewCell.h"
+#import "SDAutoLayout.h"
 
 @implementation CommentTableViewCell
 
@@ -42,56 +43,57 @@
     self.text.text=item.COMtext;
 }
 
+- (void)setModel:(GetListItem *)model{
+    _model = model;
+    [self CommentlayoutCell:_model];
+    [self setupAutoHeightWithBottomView:self.created_at bottomMargin:10];
+}
+
+
 //加载控件大小位置
 - (void)LoadFrame:(GetListItem *)item{
     
     /**头像Frame*/
-    CGFloat profile_image_url_X=12;
-    CGFloat profile_image_url_Y=12;
-    CGFloat profile_image_url_Width=50;
-    CGFloat profile_image_url_Height=50;
-    self.profile_image_url.frame=CGRectMake(profile_image_url_X, profile_image_url_Y, profile_image_url_Width, profile_image_url_Height);
-    
+    _profile_image_url.sd_layout
+    .widthIs(50)
+    .heightIs(50)
+    .topSpaceToView(self.contentView, 10)
+    .leftSpaceToView(self.contentView, 10);
     /**设置圆角*/
     self.profile_image_url.layer.masksToBounds=YES;
-    self.profile_image_url.layer.cornerRadius=profile_image_url_Width/2;
+    self.profile_image_url.layer.cornerRadius=25/2;
     
     /**昵称Frame*/
-    CGSize screen_nameSize=[self.screen_name sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
-    CGFloat screen_name_X=CGRectGetMaxX(self.profile_image_url.frame)+profile_image_url_X+5;
-    CGFloat screen_name_Y=12;
-    CGFloat screen_name_Width=screen_nameSize.width;
-    CGFloat screen_name_Height=screen_nameSize.height;
-    self.screen_name.frame=CGRectMake(screen_name_X, screen_name_Y, screen_name_Width, screen_name_Height);
+    self.screen_name.sd_layout
+    .heightIs(15)
+    .topSpaceToView(self.contentView, 10)
+    .leftSpaceToView(self.profile_image_url, 10)
+    .rightSpaceToView(self.contentView, 10)
+    .autoHeightRatio(0);
+    
     
     /**评论内容Frame*/
-    self.text.numberOfLines=0;//多行显示
-    CGSize TextSize=[self.text sizeThatFits:CGSizeMake(315, 9999)];
-    CGFloat Text_X=screen_name_X;
-    CGFloat Text_Y=screen_name_Y+screen_name_Height+5;
-    CGFloat Text_Width=TextSize.width;
-    CGFloat Text_Height=TextSize.height;
-    self.text.frame=CGRectMake(Text_X, Text_Y, Text_Width, Text_Height);
+    self.text.numberOfLines = 0;
+    self.text.sd_layout
+    .leftEqualToView(self.screen_name)
+    .topSpaceToView(self.screen_name, 8)
+    .rightSpaceToView(self.contentView, 10)
+    .autoHeightRatio(0);
     
     /**时间*/
-    CGSize created_atSize=[self.created_at sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
-    CGFloat created_at_X=screen_name_X;
-    CGFloat created_at_Y=Text_Y+Text_Height+10;
-    CGFloat created_at_Width=created_atSize.width;
-    CGFloat created_at_Height=created_atSize.height;
-    self.created_at.frame=CGRectMake(created_at_X, created_at_Y, created_at_Width, created_at_Height);
+    self.created_at.sd_layout
+    .leftEqualToView(self.text)
+    .topSpaceToView(self.text, 3)
+    .widthIs(100)
+    .autoHeightRatio(0);
     
     /**来源*/
-    CGSize source_Size=[self.source sizeThatFits:CGSizeMake(300, 9999)];
-    CGFloat source_X=created_at_X+created_at_Width+10;
-    CGFloat source_Y=created_at_Y;
-    CGFloat source_Width=source_Size.width;
-    CGFloat source_Hight=source_Size.height;
-    self.source.frame=CGRectMake(source_X, source_Y, source_Width, source_Hight);
-    
-    
-    self.CommentCellHeight=created_at_Y+created_at_Height+10;
-    
+    self.source.sd_layout
+    .leftSpaceToView(self.contentView, 180)
+    .rightSpaceToView(self.contentView, 10)
+    .topEqualToView(self.created_at)
+    .widthIs(100)
+    .autoHeightRatio(0);
 }
 
 

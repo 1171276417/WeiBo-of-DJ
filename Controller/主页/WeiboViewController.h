@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)Singleton *single;
 @property(nonatomic,strong)WeiboNavigationView *navView;
 
+@property(nonatomic,strong)NSMutableArray *modelArray;
 
 
 - (void)loginURL;

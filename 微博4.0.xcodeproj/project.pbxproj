@@ -39,6 +39,7 @@
 		35C8E84328844A670006109A /* PostCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84228844A670006109A /* PostCommentView.m */; };
 		35C8E84628844A860006109A /* PostCommentNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84528844A860006109A /* PostCommentNavigationView.m */; };
 		35C8E84928844AEA0006109A /* PostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84828844AEA0006109A /* PostCommentViewController.m */; };
+		35C8E84C2885424B0006109A /* CommentCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84B2885424B0006109A /* CommentCellModel.m */; };
 		35E7A4D52837A7A500B9BD6E /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4D42837A7A500B9BD6E /* MyView.m */; };
 		35E7A4D92837A87E00B9BD6E /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4D82837A87E00B9BD6E /* CollectionViewController.m */; };
 		35E7A4DC2837A88A00B9BD6E /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4DB2837A88A00B9BD6E /* HistoryViewController.m */; };
@@ -114,6 +115,8 @@
 		35C8E84528844A860006109A /* PostCommentNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCommentNavigationView.m; sourceTree = "<group>"; };
 		35C8E84728844AEA0006109A /* PostCommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCommentViewController.h; sourceTree = "<group>"; };
 		35C8E84828844AEA0006109A /* PostCommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCommentViewController.m; sourceTree = "<group>"; };
+		35C8E84A2885424B0006109A /* CommentCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCellModel.h; sourceTree = "<group>"; };
+		35C8E84B2885424B0006109A /* CommentCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCellModel.m; sourceTree = "<group>"; };
 		35E7A4D32837A7A500B9BD6E /* MyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
 		35E7A4D42837A7A500B9BD6E /* MyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		35E7A4D72837A87E00B9BD6E /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 				35248D3A28369095008FB8EB /* HomeTableViewCell.m */,
 				3560EEDA2836B2A700D9EBF2 /* CommentTableViewCell.h */,
 				3560EEDB2836B2A700D9EBF2 /* CommentTableViewCell.m */,
+				35C8E84A2885424B0006109A /* CommentCellModel.h */,
+				35C8E84B2885424B0006109A /* CommentCellModel.m */,
 				3560EEE92836D37B00D9EBF2 /* PostTableViewCell.h */,
 				3560EEEA2836D37B00D9EBF2 /* PostTableViewCell.m */,
 				35E7A4E42837AA8600B9BD6E /* ListTableViewCell.h */,
@@ -500,6 +505,7 @@
 				353A2C3228382A7A0039B84A /* SearchViewController.m in Sources */,
 				35248D3528368F94008FB8EB /* Singleton.m in Sources */,
 				35E7A4D92837A87E00B9BD6E /* CollectionViewController.m in Sources */,
+				35C8E84C2885424B0006109A /* CommentCellModel.m in Sources */,
 				353A2C4128385DD30039B84A /* HistorySearchViewController.m in Sources */,
 				3560EEDC2836B2A700D9EBF2 /* CommentTableViewCell.m in Sources */,
 				3560EEEB2836D37B00D9EBF2 /* PostTableViewCell.m in Sources */,

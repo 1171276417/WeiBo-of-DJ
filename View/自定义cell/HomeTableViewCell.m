@@ -6,6 +6,7 @@
 //
 
 #import "HomeTableViewCell.h"
+#import "SDAutoLayout.h"
 
 @implementation HomeTableViewCell
 

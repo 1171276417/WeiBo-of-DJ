@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GetListItem.h"
+#import "CommentCellModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class GetListItem;
@@ -19,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UILabel *created_at;//发评论时间
 @property(nonatomic,strong)UILabel *source;//评论来源
 @property(nonatomic,strong)UILabel *text;//评论内容
+@property(nonatomic,strong)GetListItem *model;
+
+@property(nonatomic,strong)CommentCellModel *model1111;
+
 
 @property(nonatomic)CGFloat CommentCellHeight;
 
