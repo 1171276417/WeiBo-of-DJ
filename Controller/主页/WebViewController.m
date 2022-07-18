@@ -37,7 +37,7 @@
 
 - (void)geturl:(NSNotification*)notification{
     
-    Singleton *single=[[Singleton alloc] init];
+//    Singleton *single=[[Singleton alloc] init];
     
     _urlstring=[notification.userInfo objectForKey:@"url"];
     

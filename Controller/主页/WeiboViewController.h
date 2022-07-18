@@ -14,6 +14,7 @@
 #import "HomeTableViewCell.h"
 #import "WebViewController.h"
 #import "WeiboNavigationView.h"
+#import "PostCommentViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class GetListItem;

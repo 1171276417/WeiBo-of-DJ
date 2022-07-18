@@ -32,6 +32,8 @@
     
     /**网页链接*/
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginURL) name:@"点击进入网址" object:nil];
+    /**评论*/
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logincomment) name:@"评论" object:nil];
     
     
     /**加载NavigationBar*/
@@ -57,7 +59,11 @@
 - (void)loginURL{
     WebViewController *web=[[WebViewController alloc] init];
     [self.navigationController pushViewController:web animated:YES];
-    
+}
+
+- (void)logincomment{
+    PostCommentViewController *comVC = [[PostCommentViewController alloc] init];
+    [self.navigationController pushViewController:comVC animated:YES];
 }
 
 - (void)collect{
@@ -127,7 +133,7 @@
     NSLog(@"");
 
     if(indexPath.row==0){
-        static NSString *ID=@"";
+        static NSString *ID=@"1";
         self.homecell=[tableView dequeueReusableCellWithIdentifier:ID];
         if(!self.homecell){
             self.homecell=[[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
@@ -137,10 +143,10 @@
         return self.homecell;
     }
     else{
-        static NSString *ID=@"";
-        self.commentcell=[tableView dequeueReusableCellWithIdentifier:ID];
+        static NSString *IDD=@"";
+        self.commentcell=[tableView dequeueReusableCellWithIdentifier:IDD];
         if(!self.commentcell){
-            self.commentcell=[[CommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            self.commentcell=[[CommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDD];
         }
             [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
         return self.commentcell;
