@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "GetListItem.h"
 #import "Singleton.h"
+#import "SDWebImage.h"
 //#import "WebViewController.h"
 
 //#import "WeiboViewController.h"

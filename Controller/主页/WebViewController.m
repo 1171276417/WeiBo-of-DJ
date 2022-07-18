@@ -25,12 +25,24 @@
     })];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(geturl:) name:@"传网址" object:nil];
     Singleton *single=[[Singleton alloc] init];
-   // single.URLString=@"http://www.baidu.com";
+    //single.URLString=@"http://t.cn/A6aYOG4D";
+    NSLog(@"%@",single.URLString);
+    NSLog(@"");
+//    NSString *URL1 = [single.URLString stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    NSString *URL2 = [URL1 stringByReplacingOccurrencesOfString:@"(" withString:@""];
+//    NSString *URL3 = [URL2 stringByReplacingOccurrencesOfString:@")" withString:@""];
+//    NSString *URL = [URL3 stringByReplacingOccurrencesOfString:@" withString:@""];
+    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
+    NSString *URL = [[single.URLString componentsSeparatedByCharactersInSet: doNotWant]componentsJoinedByString: @""];
+
+    NSLog(@"%@",single.URLString);
+    NSLog(@"");
+    
 
     NSLog(@"%@",single.URLString);
 
    
-    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:single.URLString]]];
+    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URL]]];
 
 }
 

@@ -7,6 +7,7 @@
 
 #import "CommentTableViewCell.h"
 #import "SDAutoLayout.h"
+#import "SDWebImage.h"
 
 @implementation CommentTableViewCell
 
@@ -20,14 +21,16 @@
 - (void)LoadData:(GetListItem *)item{
   
     /**头像数据*/
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.COMprofile_image_url]]];;
-        dispatch_async(mainQueue, ^{
-            self.profile_image_url.image=image;
-        });
-    });//异步加载图片
+//    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+//    dispatch_async(downloadQueue, ^{
+//        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.COMprofile_image_url]]];;
+//        dispatch_async(mainQueue, ^{
+//            self.profile_image_url.image=image;
+//        });
+//    });//异步加载图片
+    [self.profile_image_url sd_setImageWithURL:[NSURL URLWithString:item.COMprofile_image_url] placeholderImage:[UIImage imageNamed:@"4"]];
+
     
     /**昵称数据*/
     self.screen_name.text=item.COMscreen_name;
@@ -37,8 +40,7 @@
     self.created_at.text=[self SetTimeString:item.COMcreated_at]; //item.COMcreated_at;
     
     /**微博来源*/
-    self.source.text=[self SetSource:item.source];
-    
+    self.source.text=[self SetSource:item.COMsource];
     /**微博内容数据*/
     self.text.text=item.COMtext;
 }
@@ -83,17 +85,15 @@
     /**时间*/
     self.created_at.sd_layout
     .leftEqualToView(self.text)
-    .topSpaceToView(self.text, 3)
-    .widthIs(100)
-    .autoHeightRatio(0);
-    
+    .topSpaceToView(self.text, 10)
+    .widthIs(80)
+    .heightIs(15);
     /**来源*/
     self.source.sd_layout
-    .leftSpaceToView(self.contentView, 180)
-    .rightSpaceToView(self.contentView, 10)
+    .leftSpaceToView(self.created_at, 20)
     .topEqualToView(self.created_at)
-    .widthIs(100)
-    .autoHeightRatio(0);
+    .widthIs(200)
+    .heightIs(15);
 }
 
 

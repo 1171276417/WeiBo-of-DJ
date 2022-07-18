@@ -9,11 +9,17 @@
 
 @implementation NetworkData
 
+extern NSString *access_token = @"2.00b5biSHpP_7RDbf432b48d48kb_3D";
+
 /**获取微博内容数据*/
 - (void)LoadListDataBlock:(WeiboListItemLoadBlock)finishBlock andpage:(int)page{
+        
+    
+    
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramDict = @{
-        @"access_token":@"2.00b5biSHK775rC51844e822crCYI9D",
+        @"access_token":access_token,
         @"page":[NSNumber numberWithInt:page]
     };
     [manager GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:paramDict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -39,7 +45,7 @@
 - (void)LoadCommentListDataBlock:(CommentListItemLoadBlock)finishBlock andID:(NSNumber *)ID{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramDict = @{
-        @"access_token":@"2.00b5biSHK775rC51844e822crCYI9D",
+        @"access_token":access_token,
         @"id":ID
     };
     [manager GET:@"https://api.weibo.com/2/comments/show.json" parameters:paramDict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {

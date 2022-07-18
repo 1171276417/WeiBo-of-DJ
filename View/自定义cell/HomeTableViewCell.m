@@ -24,7 +24,7 @@
 - (void)setModel:(GetListItem *)model{
     _model = model;
     [self HomelayoutTableViewCellWithItem:_model];
-    [self setupAutoHeightWithBottomView:self.comments_count bottomMargin:20];
+    [self setupAutoHeightWithBottomView:self.comments_count bottomMargin:12];
 
 }
 
@@ -53,14 +53,18 @@
     self.ID=[[[NSNumberFormatter alloc] init] stringFromNumber:item.ID];;
     
     /**头像数据*/
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.profile_image_url]]];;
-        dispatch_async(mainQueue, ^{
-            self.profile_image_url.image=image;
-        });
-    });//异步加载图片
+//    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+//    dispatch_async(downloadQueue, ^{
+//        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.profile_image_url]]];;
+//        dispatch_async(mainQueue, ^{
+//            self.profile_image_url.image=image;
+//        });
+//    });//异步加载图片
+    [self.profile_image_url sd_setImageWithURL:[NSURL URLWithString:item.profile_image_url] placeholderImage:[UIImage imageNamed:@"4"]];
+    
+    
+    
     
     /**昵称数据*/
     self.screen_name.text=item.screen_name;
@@ -90,19 +94,19 @@
     }
     
     
-//    /**九宫格微博内容图片*/
-//    switch (item.pic_urls.count) {
-//        case 0:_imageHeigh=0;break;
-//        case 1:[self LoadDataimagenum1:item];break;
-//        case 2:[self LoadDataimagenum2:item];break;
-//        case 3:[self LoadDataimagenum3:item];break;
-//        case 4:[self LoadDataimagenum4:item];break;
-//        case 5:[self LoadDataimagenum5:item];break;
-//        case 6:[self LoadDataimagenum6:item];break;
-//        case 7:[self LoadDataimagenum7:item];break;
-//        case 8:[self LoadDataimagenum8:item];break;
-//        case 9:[self LoadDataimagenum9:item];break;
-//    }
+    /**九宫格微博内容图片*/
+    switch (item.pic_urls.count) {
+        case 0:_imageHeigh=0;break;
+        case 1:[self LoadOnePictureData:item];break;
+        case 2:[self LoadTwoPictureData:item];break;
+        case 3:[self LoadThreePictureData:item];break;
+        case 4:[self LoadFourPictureData:item];break;
+        case 5:[self LoadFivePictureData:item];break;
+        case 6:[self LoadSixPictureData:item];break;
+        case 7:[self LoadSevenPictureData:item];break;
+        case 8:[self LoadEightPictureData:item];break;
+        case 9:[self LoadEightPictureData:item];break;
+    }
     
     /**转发图片*/
     self.reposts.image=[UIImage imageNamed:@"reposts"];
@@ -172,10 +176,9 @@
 //    self.created_at.frame=CGRectMake(created_at_X, created_at_Y, created_at_Width, created_at_Height);
     self.created_at.sd_layout
     .heightIs(15)
+    .widthIs(80)
     .topSpaceToView(self.screen_name, 10)
-    .leftEqualToView(self.screen_name)
-    .autoWidthRatio(0);
-    
+    .leftEqualToView(self.screen_name);
     
 
     /**微博来源*/
@@ -187,10 +190,9 @@
 //    self.source.frame=CGRectMake(source_at_X, source_at_Y, source_at_Width, source_at_Height);
     self.source.sd_layout
     .leftSpaceToView(self.created_at, 20)
-    .rightSpaceToView(self.contentView, 10)
     .topEqualToView(self.created_at)
-    .autoWidthRatio(0);
-    
+    .widthIs(200)
+    .heightIs(15);
     
     /**微博内容*/
     self.text.numberOfLines=0;//多行显示
@@ -228,27 +230,27 @@
     self.URL.sd_layout
     .leftSpaceToView(self.contentView, 10)
     .topSpaceToView(self.text, 5)
-    .autoWidthRatio(0)
-    .autoHeightRatio(0);
+    .heightIs(20)
+    .widthIs(200);
     self.btnURL.sd_layout
     .leftSpaceToView(self.contentView, 10)
     .topSpaceToView(self.text, 5)
-    .autoWidthRatio(0)
-    .autoHeightRatio(0);
+    .heightIs(20)
+    .widthIs(200);
     
     
     /**九宫格微博内容图片*/
     switch (item.pic_urls.count) {
         case 0:_imageHeigh=0;break;
-        case 1:[self LoadDataimagenum1:item];break;
-        case 2:[self LoadDataimagenum2:item];break;
-        case 3:[self LoadDataimagenum3:item];break;
-        case 4:[self LoadDataimagenum4:item];break;
-        case 5:[self LoadDataimagenum5:item];break;
-        case 6:[self LoadDataimagenum6:item];break;
-        case 7:[self LoadDataimagenum7:item];break;
-        case 8:[self LoadDataimagenum8:item];break;
-        case 9:[self LoadDataimagenum9:item];break;
+        case 1:[self LoadOnePictureFrame:item];break;
+        case 2:[self LoadTwoPictureFrame:item];break;
+        case 3:[self LoadThreePictureFrame:item];break;
+        case 4:[self LoadFourPictureFrame:item];break;
+        case 5:[self LoadFivePictureFrame:item];break;
+        case 6:[self LoadSixPictureFrame:item];break;
+        case 7:[self LoadSevenPictureFrame:item];break;
+        case 8:[self LoadEightPictureFrame:item];break;
+        case 9:[self LoadNinePictureFrame:item];break;
     }
     
     
@@ -266,7 +268,7 @@
 //    self.reposts_count.frame=CGRectMake(reposts_X+25, reposts_Y, 40, 20);
     self.btnreposts.sd_layout
     .leftSpaceToView(self.contentView, 40)
-    .topSpaceToView(self.URL, 30+self.imageHeigh)
+    .topSpaceToView(self.text, 35+self.imageHeigh)
     .widthIs(60)
     .heightIs(20);
     self.reposts.sd_layout
@@ -295,7 +297,7 @@
 //    self.comments_count.frame=CGRectMake(comments_X+25, comments_Y, 40, 20);
     self.btncomments.sd_layout
     .leftSpaceToView(self.contentView, 170)
-    .topSpaceToView(self.URL, 30+self.imageHeigh)
+    .topSpaceToView(self.text, 35+self.imageHeigh)
     .widthIs(60)
     .heightIs(20);
     self.comments.sd_layout
@@ -326,7 +328,7 @@
 //    self.attitudes_count.frame=CGRectMake(attitudes_X+25, attitudes_Y, 40, 20);
     self.btnattitudes.sd_layout
     .leftSpaceToView(self.contentView, 300)
-    .topSpaceToView(self.URL, 30+self.imageHeigh)
+    .topSpaceToView(self.text, 35+self.imageHeigh)
     .widthIs(60)
     .heightIs(20);
     self.attitudes.sd_layout
@@ -398,6 +400,7 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
     [outputFormatter setLocale:[NSLocale currentLocale]];
     [outputFormatter setDateFormat:@"HH:mm:ss"];
     NSString *str = [outputFormatter stringFromDate:inputDate];
+    NSLog(@"");
     return str;
 }
 
@@ -411,187 +414,324 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
     source = [source substringToIndex:range.location];
     source = [NSString stringWithFormat:@"来自%@",source];
     }
+    NSLog(@"");
     return source;
 }
 
 
 
-//加载一张图片
-- (void)LoadDataimagenum1:(GetListItem *)item{
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.original_pic]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic1.image=image;
-        });
-    });
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).rightSpaceToView(self.contentView, 10).heightIs(300).widthIs(300);
-    self.imageHeigh=300;
+//加载图片数据Data
+/**one*/
+- (void)LoadOnePictureData:(GetListItem *)item{
+    [self.thumbnail_pic1 sd_setImageWithURL:[NSURL URLWithString:item.original_pic] placeholderImage:[UIImage imageNamed:@"4"]];
 }
-//加载两张图片
-- (void)LoadDataimagenum2:(GetListItem *)item{
-    [self LoadDataimagenum1:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[1] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic2.image=image;
-        });
-    });
-    
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
+/**two*/
+- (void)LoadTwoPictureData:(GetListItem *)item{
+    [self LoadOnePictureData:item];
+    [self.thumbnail_pic2 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[1] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**three*/
+- (void)LoadThreePictureData:(GetListItem *)item{
+    [self LoadTwoPictureData:item];
+    [self.thumbnail_pic3 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[2] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**four*/
+- (void)LoadFourPictureData:(GetListItem *)item{
+    [self LoadThreePictureData:item];
+    [self.thumbnail_pic4 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[3] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**five*/
+- (void)LoadFivePictureData:(GetListItem *)item{
+    [self LoadFourPictureData:item];
+    [self.thumbnail_pic5 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[4] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**six*/
+- (void)LoadSixPictureData:(GetListItem *)item{
+    [self LoadFivePictureData:item];
+    [self.thumbnail_pic6 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[5] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**seven*/
+- (void)LoadSevenPictureData:(GetListItem *)item{
+    [self LoadSixPictureData:item];
+    [self.thumbnail_pic7 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[6] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**eight*/
+- (void)LoadEightPictureData:(GetListItem *)item{
+    [self LoadSevenPictureData:item];
+    [self.thumbnail_pic8 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[7] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+/**nine*/
+- (void)LoadNinePictureData:(GetListItem *)item{
+    [self LoadEightPictureData:item];
+    [self.thumbnail_pic9 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[8] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+}
+
+
+//加载图片位置Frame
+/**one*/
+- (void)LoadOnePictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 30).heightIs(330).widthIs(330);
+    self.imageHeigh=330;
+}
+/**two*/
+- (void)LoadTwoPictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
     self.imageHeigh=180;
 }
-//加载三张图片
-- (void)LoadDataimagenum3:(GetListItem *)item{
-    [self LoadDataimagenum2:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[2] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic3.image=image;
-        });
-    });
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
-    
+/**three*/
+- (void)LoadThreePictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
     self.imageHeigh=350/3;
 }
-//加载四张图片
-- (void)LoadDataimagenum4:(GetListItem *)item{
-    [self LoadDataimagenum3:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[3] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic4.image=image;
-        });
-    });
-    
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
+/**four*/
+- (void)LoadFourPictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
     self.thumbnail_pic3.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
     self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic3, 10).heightIs(180).widthIs(180);
     self.imageHeigh=370;
-    
 }
-//加载五张图片
-- (void)LoadDataimagenum5:(GetListItem *)item{
-    [self LoadDataimagenum4:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[4] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic5.image=image;
-        });
-    });
-   
-    
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+/**five*/
+- (void)LoadFivePictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
-    
-    
-    
-    
     self.imageHeigh=700/3+10;
 }
-//加载六张图片
-- (void)LoadDataimagenum6:(GetListItem *)item{
-    [self LoadDataimagenum5:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[5] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic6.image=image;
-        });
-    });
-    
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+/**six*/
+- (void)LoadSixPictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
-
     self.imageHeigh=700/3+10;
 }
-//加载七张图片
-- (void)LoadDataimagenum7:(GetListItem *)item{
-    [self LoadDataimagenum6:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[6] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic7.image=image;
-        });
-    });
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+/**seven*/
+- (void)LoadSevenPictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-
     self.imageHeigh=370;
 }
-//加载八张图片
-- (void)LoadDataimagenum8:(GetListItem *)item{
-    [self LoadDataimagenum7:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[7] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic8.image=image;
-        });
-    });
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+/**eight*/
+- (void)LoadEightPictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic8.sd_layout.topSpaceToView(self.thumbnail_pic5, 10).leftSpaceToView(self.thumbnail_pic7, 10).heightIs(350/3).widthIs(350/3);
-
     self.imageHeigh=370;
 }
-//加载九张图片
-- (void)LoadDataimagenum9:(GetListItem *)item{
-    [self LoadDataimagenum8:item];
-    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-    dispatch_async(downloadQueue, ^{
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[8] objectForKey:@"thumbnail_pic"]]]];;
-        dispatch_async(mainQueue, ^{
-            self.thumbnail_pic9.image=image;
-        });
-    });
-    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
-    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+/**nine*/
+- (void)LoadNinePictureFrame:(GetListItem *)item{
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.text, 20).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic8.sd_layout.topSpaceToView(self.thumbnail_pic5, 10).leftSpaceToView(self.thumbnail_pic7, 10).heightIs(350/3).widthIs(350/3);
     self.thumbnail_pic9.sd_layout.topSpaceToView(self.thumbnail_pic6, 10).leftSpaceToView(self.thumbnail_pic8, 10).heightIs(350/3).widthIs(350/3);
-
     self.imageHeigh=370;
 }
+
+
+
+
+
+//
+//
+////加载一张图片
+//- (void)LoadDataimagenum1:(GetListItem *)item{
+//    [self.thumbnail_pic1 sd_setImageWithURL:[NSURL URLWithString:item.original_pic] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(300).widthIs(300);
+//    self.imageHeigh=300;
+//}
+////加载两张图片
+//- (void)LoadDataimagenum2:(GetListItem *)item{
+//    [self LoadDataimagenum1:item];
+//    [self.thumbnail_pic2 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[1] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
+//    self.imageHeigh=180;
+//}
+////加载三张图片
+//- (void)LoadDataimagenum3:(GetListItem *)item{
+//    [self LoadDataimagenum2:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[2] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic3.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic3 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[2] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+//
+//    self.imageHeigh=350/3;
+//}
+////加载四张图片
+//- (void)LoadDataimagenum4:(GetListItem *)item{
+//    [self LoadDataimagenum3:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[3] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic4.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic4 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[3] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+//    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic3, 10).heightIs(180).widthIs(180);
+//    self.imageHeigh=370;
+//
+//}
+////加载五张图片
+//- (void)LoadDataimagenum5:(GetListItem *)item{
+//    [self LoadDataimagenum4:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[4] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic5.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic5 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[4] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+//
+//
+//
+//
+//    self.imageHeigh=700/3+10;
+//}
+////加载六张图片
+//- (void)LoadDataimagenum6:(GetListItem *)item{
+//    [self LoadDataimagenum5:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[5] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic6.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic6 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[5] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+//
+//    self.imageHeigh=700/3+10;
+//}
+////加载七张图片
+//- (void)LoadDataimagenum7:(GetListItem *)item{
+//    [self LoadDataimagenum6:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[6] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic7.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic7 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[6] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//
+//    self.imageHeigh=370;
+//}
+////加载八张图片
+//- (void)LoadDataimagenum8:(GetListItem *)item{
+//    [self LoadDataimagenum7:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[7] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic8.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic8 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[7] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic8.sd_layout.topSpaceToView(self.thumbnail_pic5, 10).leftSpaceToView(self.thumbnail_pic7, 10).heightIs(350/3).widthIs(350/3);
+//
+//    self.imageHeigh=370;
+//}
+////加载九张图片
+//- (void)LoadDataimagenum9:(GetListItem *)item{
+//    [self LoadDataimagenum8:item];
+////    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+////    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
+////    dispatch_async(downloadQueue, ^{
+////        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[item.pic_urls[8] objectForKey:@"thumbnail_pic"]]]];;
+////        dispatch_async(mainQueue, ^{
+////            self.thumbnail_pic9.image=image;
+////        });
+////    });
+//    [self.thumbnail_pic9 sd_setImageWithURL:[NSURL URLWithString:[item.pic_urls[8] objectForKey:@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"4"]];
+//
+//    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic8.sd_layout.topSpaceToView(self.thumbnail_pic5, 10).leftSpaceToView(self.thumbnail_pic7, 10).heightIs(350/3).widthIs(350/3);
+//    self.thumbnail_pic9.sd_layout.topSpaceToView(self.thumbnail_pic6, 10).leftSpaceToView(self.thumbnail_pic8, 10).heightIs(350/3).widthIs(350/3);
+//
+//    self.imageHeigh=370;
+//}
 
 
 
