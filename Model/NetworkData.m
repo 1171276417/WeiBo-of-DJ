@@ -13,7 +13,7 @@
 - (void)LoadListDataBlock:(WeiboListItemLoadBlock)finishBlock andpage:(int)page{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramDict = @{
-        @"access_token":@"2.00b5biSHdh2B8B78b926ec07U12SWD",
+        @"access_token":@"2.00b5biSHK775rC51844e822crCYI9D",
         @"page":[NSNumber numberWithInt:page]
     };
     [manager GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:paramDict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -39,7 +39,7 @@
 - (void)LoadCommentListDataBlock:(CommentListItemLoadBlock)finishBlock andID:(NSNumber *)ID{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramDict = @{
-        @"access_token":@"2.00b5biSHdh2B8B78b926ec07U12SWD",
+        @"access_token":@"2.00b5biSHK775rC51844e822crCYI9D",
         @"id":ID
     };
     [manager GET:@"https://api.weibo.com/2/comments/show.json" parameters:paramDict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {

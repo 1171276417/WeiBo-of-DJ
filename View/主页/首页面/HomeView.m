@@ -18,10 +18,10 @@
 //    _scrollview.showsVerticalScrollIndicator=YES;
     _scrollview.bounces=NO;//关闭弹簧效果
     //首页微博
-    _hometableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+    _hometableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 390, self.bounds.size.height)];
     [_scrollview addSubview:_hometableview];
     //我发布的微博列表
-    _mytableview=[[UITableView alloc] initWithFrame:CGRectMake(self.bounds.size.width, 0, self.bounds.size.width, self.bounds.size.height)];
+    _mytableview=[[UITableView alloc] initWithFrame:CGRectMake(390, 0, 390, self.bounds.size.height)];
     [_scrollview addSubview:_mytableview];
     
     self.placeholder=[[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width+100, 100, 250, 50)];

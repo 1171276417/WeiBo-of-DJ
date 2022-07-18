@@ -117,9 +117,9 @@
     Singleton *single=[[Singleton alloc] init];
     /**第一行是微博内容*/
     if(indexPath.row==0){
-        [self.homecell HomelayoutTableViewCellWithItem:(GetListItem *)single.WeiboDictionary];
+//        [self.homecell HomelayoutTableViewCellWithItem:(GetListItem *)single.WeiboDictionary];
 
-        return self.homecell.HomeCellHeight;
+        return [self.weiboview.tableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.HomeArray[indexPath.row] keyPath:@"model" cellClass:[HomeTableViewCell class] contentViewWidth:self.view.bounds.size.width];
     }
     /**后面为评论区*/
     else {

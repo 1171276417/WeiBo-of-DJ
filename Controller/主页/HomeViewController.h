@@ -17,6 +17,7 @@
 #import "PostTableViewCell.h"
 #import "SearchViewController.h"
 #import "MJRefresh.h"
+#import "SDAutoLayout.h"
 
 
 @class GetListItem;

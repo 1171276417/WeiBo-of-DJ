@@ -21,6 +21,15 @@
     
 }
 
+- (void)setModel:(GetListItem *)model{
+    _model = model;
+    [self HomelayoutTableViewCellWithItem:_model];
+    [self setupAutoHeightWithBottomView:self.comments_count bottomMargin:20];
+
+}
+
+
+
 - (void)Loadurl{
     Singleton *single=[[Singleton alloc] init];
     single.URLString=_urlstr;
@@ -81,19 +90,19 @@
     }
     
     
-    /**九宫格微博内容图片*/
-    switch (item.pic_urls.count) {
-        case 0:_imageHeigh=0;break;
-        case 1:[self LoadDataimagenum1:item];break;
-        case 2:[self LoadDataimagenum2:item];break;
-        case 3:[self LoadDataimagenum3:item];break;
-        case 4:[self LoadDataimagenum4:item];break;
-        case 5:[self LoadDataimagenum5:item];break;
-        case 6:[self LoadDataimagenum6:item];break;
-        case 7:[self LoadDataimagenum7:item];break;
-        case 8:[self LoadDataimagenum8:item];break;
-        case 9:[self LoadDataimagenum9:item];break;
-    }
+//    /**九宫格微博内容图片*/
+//    switch (item.pic_urls.count) {
+//        case 0:_imageHeigh=0;break;
+//        case 1:[self LoadDataimagenum1:item];break;
+//        case 2:[self LoadDataimagenum2:item];break;
+//        case 3:[self LoadDataimagenum3:item];break;
+//        case 4:[self LoadDataimagenum4:item];break;
+//        case 5:[self LoadDataimagenum5:item];break;
+//        case 6:[self LoadDataimagenum6:item];break;
+//        case 7:[self LoadDataimagenum7:item];break;
+//        case 8:[self LoadDataimagenum8:item];break;
+//        case 9:[self LoadDataimagenum9:item];break;
+//    }
     
     /**转发图片*/
     self.reposts.image=[UIImage imageNamed:@"reposts"];
@@ -126,92 +135,213 @@
 /**设置位置和大小*/
 - (void)SetFrame:(GetListItem *)item{
     /**头像Frame*/
-    CGFloat profile_image_X=12;
-    CGFloat profile_image_Y=12;
-    CGFloat profile_image_Width=50;
-    CGFloat profile_image_Height=50;
-    self.profile_image_url.frame=CGRectMake(profile_image_X, profile_image_Y, profile_image_Width, profile_image_Height);
+//    CGFloat profile_image_X=12;
+//    CGFloat profile_image_Y=12;
+//    CGFloat profile_image_Width=50;
+//    CGFloat profile_image_Height=50;
+//    self.profile_image_url.frame=CGRectMake(profile_image_X, profile_image_Y, profile_image_Width, profile_image_Height);
     self.profile_image_url.layer.masksToBounds=YES; //设置圆角
-    self.profile_image_url.layer.cornerRadius=profile_image_Width/2;
+    self.profile_image_url.layer.cornerRadius=25;
+    self.profile_image_url.sd_layout
+    .widthIs(50)
+    .heightIs(50)
+    .topSpaceToView(self.contentView, 10)
+    .leftSpaceToView(self.contentView, 10);
     
     /**昵称Frame*/
-    CGSize screen_nameSize=[self.screen_name sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
-    CGFloat screen_name_X=CGRectGetMaxX(self.profile_image_url.frame)+profile_image_X+5;
-    CGFloat screen_name_Y=15;
-    CGFloat screen_name_Width=screen_nameSize.width;
-    CGFloat screen_name_Height=screen_nameSize.height;
-    self.screen_name.frame=CGRectMake(screen_name_X, screen_name_Y, screen_name_Width, screen_name_Height);
+//    CGSize screen_nameSize=[self.screen_name sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
+//    CGFloat screen_name_X=CGRectGetMaxX(self.profile_image_url.frame)+profile_image_X+5;
+//    CGFloat screen_name_Y=15;
+//    CGFloat screen_name_Width=screen_nameSize.width;
+//    CGFloat screen_name_Height=screen_nameSize.height;
+//    self.screen_name.frame=CGRectMake(screen_name_X, screen_name_Y, screen_name_Width, screen_name_Height);
+    self.screen_name.sd_layout
+    .heightIs(15)
+    .topSpaceToView(self.contentView, 10)
+    .leftSpaceToView(self.profile_image_url, 10)
+    .rightSpaceToView(self.contentView, 10)
+    .autoHeightRatio(0);
+ 
     
     /**发博时间Frame*/
-    CGSize created_atSize=[self.created_at sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
-    CGFloat created_at_X=screen_name_X;
-    CGFloat created_at_Y=screen_name_Height+15;
-    CGFloat created_at_Width=created_atSize.width;
-    CGFloat created_at_Height=created_atSize.height;
-    self.created_at.frame=CGRectMake(created_at_X, created_at_Y, created_at_Width, created_at_Height);
+//    CGSize created_atSize=[self.created_at sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
+//    CGFloat created_at_X=screen_name_X;
+//    CGFloat created_at_Y=screen_name_Height+15;
+//    CGFloat created_at_Width=created_atSize.width;
+//    CGFloat created_at_Height=created_atSize.height;
+//    self.created_at.frame=CGRectMake(created_at_X, created_at_Y, created_at_Width, created_at_Height);
+    self.created_at.sd_layout
+    .heightIs(15)
+    .topSpaceToView(self.screen_name, 10)
+    .leftEqualToView(self.screen_name)
+    .autoWidthRatio(0);
     
+    
+
     /**微博来源*/
-    CGSize source_atSize=[self.source sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
-    CGFloat source_at_X=created_at_X+created_at_Width+10;
-    CGFloat source_at_Y=created_at_Y;
-    CGFloat source_at_Width=source_atSize.width;
-    CGFloat source_at_Height=source_atSize.height;
-    self.source.frame=CGRectMake(source_at_X, source_at_Y, source_at_Width, source_at_Height);
+//    CGSize source_atSize=[self.source sizeThatFits:CGSizeMake(300, 9999)];//最宽为300
+//    CGFloat source_at_X=created_at_X+created_at_Width+10;
+//    CGFloat source_at_Y=created_at_Y;
+//    CGFloat source_at_Width=source_atSize.width;
+//    CGFloat source_at_Height=source_atSize.height;
+//    self.source.frame=CGRectMake(source_at_X, source_at_Y, source_at_Width, source_at_Height);
+    self.source.sd_layout
+    .leftSpaceToView(self.created_at, 20)
+    .rightSpaceToView(self.contentView, 10)
+    .topEqualToView(self.created_at)
+    .autoWidthRatio(0);
+    
     
     /**微博内容*/
     self.text.numberOfLines=0;//多行显示
-    CGSize textSize=[self.text sizeThatFits:CGSizeMake(370, 9999)];//最宽为370
-    CGFloat text_X=10;
-    CGFloat text_Y=75;
-    CGFloat text_Width=textSize.width;
-    _text_Height=textSize.height;
-    self.text.frame=CGRectMake(text_X, text_Y, text_Width, _text_Height);
+//    CGSize textSize=[self.text sizeThatFits:CGSizeMake(370, 9999)];//最宽为370
+//    CGFloat text_X=10;
+//    CGFloat text_Y=75;
+//    CGFloat text_Width=textSize.width;
+//    _text_Height=textSize.height;
+//    self.text.frame=CGRectMake(text_X, text_Y, text_Width, _text_Height);
+    self.text.sd_layout
+    .leftSpaceToView(self.contentView, 10)
+    .topSpaceToView(self.profile_image_url, 15)
+//    .rightSpaceToView(self.contentView, 10)
+    .widthIs(370)
+    .autoHeightRatio(0);
+    
+    
+    
+    
     
     /**网页链接*/
-    CGSize urlSize=[self.URL sizeThatFits:CGSizeMake(300, 999)];
-    CGFloat url_X=10;
-    CGFloat url_Y=text_Y+_text_Height+5;
-    CGFloat url_Width=urlSize.width;
-    if(_urlcount){
-        _url_Height=urlSize.height;
+//    CGSize urlSize=[self.URL sizeThatFits:CGSizeMake(300, 999)];
+//    CGFloat url_X=10;
+//    CGFloat url_Y=text_Y+_text_Height+5;
+//    CGFloat url_Width=urlSize.width;
+//    if(_urlcount){
+//        _url_Height=urlSize.height;
+//    }
+//    else{
+//        _url_Height=0;
+//
+//    }
+//    self.URL.frame=CGRectMake(url_X, url_Y, url_Width, _url_Height);
+//    self.btnURL.frame=CGRectMake(url_X, url_Y, url_Width, _url_Height);
+    self.URL.sd_layout
+    .leftSpaceToView(self.contentView, 10)
+    .topSpaceToView(self.text, 5)
+    .autoWidthRatio(0)
+    .autoHeightRatio(0);
+    self.btnURL.sd_layout
+    .leftSpaceToView(self.contentView, 10)
+    .topSpaceToView(self.text, 5)
+    .autoWidthRatio(0)
+    .autoHeightRatio(0);
+    
+    
+    /**九宫格微博内容图片*/
+    switch (item.pic_urls.count) {
+        case 0:_imageHeigh=0;break;
+        case 1:[self LoadDataimagenum1:item];break;
+        case 2:[self LoadDataimagenum2:item];break;
+        case 3:[self LoadDataimagenum3:item];break;
+        case 4:[self LoadDataimagenum4:item];break;
+        case 5:[self LoadDataimagenum5:item];break;
+        case 6:[self LoadDataimagenum6:item];break;
+        case 7:[self LoadDataimagenum7:item];break;
+        case 8:[self LoadDataimagenum8:item];break;
+        case 9:[self LoadDataimagenum9:item];break;
     }
-    else{
-        _url_Height=0;
-
-    }
-    self.URL.frame=CGRectMake(url_X, url_Y, url_Width, _url_Height);
-    self.btnURL.frame=CGRectMake(url_X, url_Y, url_Width, _url_Height);
+    
+    
+    
+    
     
     
     /**转发按钮*/
-    CGFloat reposts_X=40;
-    CGFloat reposts_Y=text_Y+_text_Height+_imageHeigh+35+_url_Height;
-    CGFloat reposts_Width=60;
-    CGFloat reposts_Height=20;
-    self.btnreposts.frame=CGRectMake(reposts_X, reposts_Y, reposts_Width, reposts_Height);
-    self.reposts.frame=CGRectMake(reposts_X, reposts_Y, 20, 20);
-    self.reposts_count.frame=CGRectMake(reposts_X+25, reposts_Y, 40, 20);
+//    CGFloat reposts_X=40;
+//    CGFloat reposts_Y=text_Y+_text_Height+_imageHeigh+35+_url_Height;
+//    CGFloat reposts_Width=60;
+//    CGFloat reposts_Height=20;
+//    self.btnreposts.frame=CGRectMake(reposts_X, reposts_Y, reposts_Width, reposts_Height);
+//    self.reposts.frame=CGRectMake(reposts_X, reposts_Y, 20, 20);
+//    self.reposts_count.frame=CGRectMake(reposts_X+25, reposts_Y, 40, 20);
+    self.btnreposts.sd_layout
+    .leftSpaceToView(self.contentView, 40)
+    .topSpaceToView(self.URL, 30+self.imageHeigh)
+    .widthIs(60)
+    .heightIs(20);
+    self.reposts.sd_layout
+    .leftEqualToView(self.btnreposts)
+    .topEqualToView(self.btnreposts)
+    .widthIs(20)
+    .heightIs(20);
+    self.reposts_count.sd_layout
+    .leftSpaceToView(self.contentView, 65)
+    .topEqualToView(self.btnreposts)
+    .widthIs(40)
+    .heightIs(20);
 
-    /**评论按钮*/
-    CGFloat comments_X=170;
-    CGFloat comments_Y=text_Y+_text_Height+_imageHeigh+35+_url_Height;
-    CGFloat comments_Width=60;
-    CGFloat comments_Height=20;
-    self.btncomments.frame=CGRectMake(comments_X, comments_Y, comments_Width, comments_Height);
-    self.comments.frame=CGRectMake(comments_X, comments_Y, 20, 20);
-    self.comments_count.frame=CGRectMake(comments_X+25, comments_Y, 40, 20);
     
-    /**点赞按钮*/
-    CGFloat attitudes_X=300;
-    CGFloat attitudes_Y=text_Y+_text_Height+_imageHeigh+35+_url_Height;
-    CGFloat attitudes_Width=60;
-    CGFloat attitudes_Height=20;
-    self.btnattitudes.frame=CGRectMake(attitudes_X, attitudes_Y, attitudes_Width, attitudes_Height);
-    self.attitudes.frame=CGRectMake(attitudes_X, attitudes_Y, 20, 20);
-    self.attitudes_count.frame=CGRectMake(attitudes_X+25, attitudes_Y, 40, 20);
+    
+    
+    
+    
+    /**评论按钮*/
+//    CGFloat comments_X=170;
+//    CGFloat comments_Y=text_Y+_text_Height+_imageHeigh+35+_url_Height;
+//    CGFloat comments_Width=60;
+//    CGFloat comments_Height=20;
+//    self.btncomments.frame=CGRectMake(comments_X, comments_Y, comments_Width, comments_Height);
+//    self.comments.frame=CGRectMake(comments_X, comments_Y, 20, 20);
+//    self.comments_count.frame=CGRectMake(comments_X+25, comments_Y, 40, 20);
+    self.btncomments.sd_layout
+    .leftSpaceToView(self.contentView, 170)
+    .topSpaceToView(self.URL, 30+self.imageHeigh)
+    .widthIs(60)
+    .heightIs(20);
+    self.comments.sd_layout
+    .leftEqualToView(self.btncomments)
+    .topEqualToView(self.btncomments)
+    .widthIs(20)
+    .heightIs(20);
+    self.comments_count.sd_layout
+    .leftSpaceToView(self.contentView, 195)
+    .topEqualToView(self.btncomments)
+    .widthIs(40)
+    .heightIs(20);
+    
+    
+    
+    
+    
+    
+    
+    
+//    /**点赞按钮*/
+//    CGFloat attitudes_X=300;
+//    CGFloat attitudes_Y=text_Y+_text_Height+_imageHeigh+35+_url_Height;
+//    CGFloat attitudes_Width=60;
+//    CGFloat attitudes_Height=20;
+//    self.btnattitudes.frame=CGRectMake(attitudes_X, attitudes_Y, attitudes_Width, attitudes_Height);
+//    self.attitudes.frame=CGRectMake(attitudes_X, attitudes_Y, 20, 20);
+//    self.attitudes_count.frame=CGRectMake(attitudes_X+25, attitudes_Y, 40, 20);
+    self.btnattitudes.sd_layout
+    .leftSpaceToView(self.contentView, 300)
+    .topSpaceToView(self.URL, 30+self.imageHeigh)
+    .widthIs(60)
+    .heightIs(20);
+    self.attitudes.sd_layout
+    .leftEqualToView(self.btnattitudes)
+    .topEqualToView(self.btnattitudes)
+    .widthIs(20)
+    .heightIs(20);
+    self.attitudes_count.sd_layout
+    .leftSpaceToView(self.contentView, 325)
+    .topEqualToView(self.btnattitudes)
+    .widthIs(40)
+    .heightIs(20);
     
     /**Cell的高度*/
-    self.HomeCellHeight=text_Y+_text_Height+_imageHeigh+60+_url_Height;
+//    self.HomeCellHeight=text_Y+_text_Height+_imageHeigh+60+_url_Height;
     
 }
 
@@ -296,7 +426,7 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic1.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(20, 95+_text_Height, 300, 300);
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).rightSpaceToView(self.contentView, 10).heightIs(300).widthIs(300);
     self.imageHeigh=300;
 }
 //加载两张图片
@@ -310,8 +440,9 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic2.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(10, 95+_text_Height, 180, 180);
-    self.thumbnail_pic2.frame=CGRectMake(20, 95+_text_Height, 180, 180);
+    
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
     self.imageHeigh=180;
 }
 //加载三张图片
@@ -325,10 +456,11 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic3.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(12, 95+_text_Height, 114, 114);
-    self.thumbnail_pic2.frame=CGRectMake(138, 95+_text_Height, 114, 114);
-    self.thumbnail_pic3.frame=CGRectMake(264, 95+_text_Height, 114, 114);
-    self.imageHeigh=114;
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+    
+    self.imageHeigh=350/3;
 }
 //加载四张图片
 - (void)LoadDataimagenum4:(GetListItem *)item{
@@ -341,11 +473,12 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic4.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(30, 95+_text_Height, 150, 150);
-    self.thumbnail_pic2.frame=CGRectMake(210, 95+_text_Height, 150, 150);
-    self.thumbnail_pic3.frame=CGRectMake(30, 265+_text_Height, 150, 150);
-    self.thumbnail_pic4.frame=CGRectMake(210, 265+_text_Height, 150, 150);
-    self.imageHeigh=320;
+    
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(180).widthIs(180);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(180).widthIs(180);
+    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic3, 10).heightIs(180).widthIs(180);
+    self.imageHeigh=370;
     
 }
 //加载五张图片
@@ -359,12 +492,18 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic5.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(12, 95+_text_Height, 114, 114);
-    self.thumbnail_pic2.frame=CGRectMake(138, 95+_text_Height, 114, 114);
-    self.thumbnail_pic3.frame=CGRectMake(264, 95+_text_Height, 114, 114);
-    self.thumbnail_pic4.frame=CGRectMake(12, 221+_text_Height, 114, 114);
-    self.thumbnail_pic5.frame=CGRectMake(138, 221+_text_Height, 114, 114);
-    self.imageHeigh=240;
+   
+    
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+    
+    
+    
+    
+    self.imageHeigh=700/3+10;
 }
 //加载六张图片
 - (void)LoadDataimagenum6:(GetListItem *)item{
@@ -377,13 +516,15 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic6.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(12, 95+_text_Height, 114, 114);
-    self.thumbnail_pic2.frame=CGRectMake(138, 95+_text_Height, 114, 114);
-    self.thumbnail_pic3.frame=CGRectMake(264, 95+_text_Height, 114, 114);
-    self.thumbnail_pic4.frame=CGRectMake(12, 221+_text_Height, 114, 114);
-    self.thumbnail_pic5.frame=CGRectMake(138, 221+_text_Height, 114, 114);
-    self.thumbnail_pic6.frame=CGRectMake(264, 221+_text_Height, 114, 114);
-    self.imageHeigh=240;
+    
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+
+    self.imageHeigh=700/3+10;
 }
 //加载七张图片
 - (void)LoadDataimagenum7:(GetListItem *)item{
@@ -396,14 +537,15 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic7.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(12, 95+_text_Height, 114, 114);
-    self.thumbnail_pic2.frame=CGRectMake(138, 95+_text_Height, 114, 114);
-    self.thumbnail_pic3.frame=CGRectMake(264, 95+_text_Height, 114, 114);
-    self.thumbnail_pic4.frame=CGRectMake(12, 221+_text_Height, 114, 114);
-    self.thumbnail_pic5.frame=CGRectMake(138, 221+_text_Height, 114, 114);
-    self.thumbnail_pic6.frame=CGRectMake(264, 221+_text_Height, 114, 114);
-    self.thumbnail_pic7.frame=CGRectMake(12, 347+_text_Height, 114, 114);
-    self.imageHeigh=366;
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+
+    self.imageHeigh=370;
 }
 //加载八张图片
 - (void)LoadDataimagenum8:(GetListItem *)item{
@@ -416,15 +558,16 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic8.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(12, 95+_text_Height, 114, 114);
-    self.thumbnail_pic2.frame=CGRectMake(138, 95+_text_Height, 114, 114);
-    self.thumbnail_pic3.frame=CGRectMake(264, 95+_text_Height, 114, 114);
-    self.thumbnail_pic4.frame=CGRectMake(12, 221+_text_Height, 114, 114);
-    self.thumbnail_pic5.frame=CGRectMake(138, 221+_text_Height, 114, 114);
-    self.thumbnail_pic6.frame=CGRectMake(264, 221+_text_Height, 114, 114);
-    self.thumbnail_pic7.frame=CGRectMake(12, 347+_text_Height, 114, 114);
-    self.thumbnail_pic8.frame=CGRectMake(138, 347+_text_Height, 114, 114);
-    self.imageHeigh=366;
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic8.sd_layout.topSpaceToView(self.thumbnail_pic5, 10).leftSpaceToView(self.thumbnail_pic7, 10).heightIs(350/3).widthIs(350/3);
+
+    self.imageHeigh=370;
 }
 //加载九张图片
 - (void)LoadDataimagenum9:(GetListItem *)item{
@@ -437,16 +580,17 @@ NSPredicate* urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlR
             self.thumbnail_pic9.image=image;
         });
     });
-    self.thumbnail_pic1.frame=CGRectMake(12, 95+_text_Height, 114, 114);
-    self.thumbnail_pic2.frame=CGRectMake(138, 95+_text_Height, 114, 114);
-    self.thumbnail_pic3.frame=CGRectMake(264, 95+_text_Height, 114, 114);
-    self.thumbnail_pic4.frame=CGRectMake(12, 221+_text_Height, 114, 114);
-    self.thumbnail_pic5.frame=CGRectMake(138, 221+_text_Height, 114, 114);
-    self.thumbnail_pic6.frame=CGRectMake(264, 221+_text_Height, 114, 114);
-    self.thumbnail_pic7.frame=CGRectMake(12, 347+_text_Height, 114, 114);
-    self.thumbnail_pic8.frame=CGRectMake(138, 347+_text_Height, 114, 114);
-    self.thumbnail_pic9.frame=CGRectMake(264, 347+_text_Height, 114, 114);
-    self.imageHeigh=366;
+    self.thumbnail_pic1.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic2.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic1, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic3.sd_layout.topSpaceToView(self.URL, 10).leftSpaceToView(self.thumbnail_pic2, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic4.sd_layout.topSpaceToView(self.thumbnail_pic1, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic5.sd_layout.topSpaceToView(self.thumbnail_pic2, 10).leftSpaceToView(self.thumbnail_pic4, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic6.sd_layout.topSpaceToView(self.thumbnail_pic3, 10).leftSpaceToView(self.thumbnail_pic5, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic7.sd_layout.topSpaceToView(self.thumbnail_pic4, 10).leftSpaceToView(self.contentView, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic8.sd_layout.topSpaceToView(self.thumbnail_pic5, 10).leftSpaceToView(self.thumbnail_pic7, 10).heightIs(350/3).widthIs(350/3);
+    self.thumbnail_pic9.sd_layout.topSpaceToView(self.thumbnail_pic6, 10).leftSpaceToView(self.thumbnail_pic8, 10).heightIs(350/3).widthIs(350/3);
+
+    self.imageHeigh=370;
 }
 
 

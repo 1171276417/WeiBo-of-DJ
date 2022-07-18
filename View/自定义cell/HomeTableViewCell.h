@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)GetListItem *model;
+
 /**微博内容*/
 @property(nonatomic,strong,readwrite)UIImageView *profile_image_url;//用户头像
 @property(nonatomic,strong,readwrite)UILabel *screen_name;//用户昵称
