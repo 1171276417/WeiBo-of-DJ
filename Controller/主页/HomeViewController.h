@@ -16,6 +16,7 @@
 #import "PostViewController.h"
 #import "PostTableViewCell.h"
 #import "SearchViewController.h"
+#import "MJRefresh.h"
 
 
 @class GetListItem;
@@ -33,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIRefreshControl *refresh;
 @property(nonatomic,strong)NSMutableArray *homearr;
 @property(nonatomic,strong)GetListItem *list;
-
 
 
 

@@ -13,6 +13,8 @@
 
 @implementation HomeViewController
 
+extern int page = 1;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     /**加载View*/
@@ -36,11 +38,9 @@
     __unused NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:360 target:self selector:@selector(LoadupData) userInfo:nil repeats:YES];
     
     //加载下拉刷新控件
-    self.refresh=[[UIRefreshControl alloc] init];
-    self.refresh.tintColor=[UIColor grayColor];
-    self.refresh.attributedTitle=[[NSAttributedString alloc] initWithString:@"Loading..."];
-    [self.refresh addTarget:self action:@selector(LoadupData) forControlEvents:UIControlEventValueChanged];
-    self.homeview.hometableview.refreshControl=self.refresh;
+    self.homeview.hometableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(LoadupData)];
+    //上拉加载
+    self.homeview.hometableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loadmore)];
         
 
 }
@@ -51,9 +51,25 @@
 }
 
 - (void)LoadupData{
-    [self.refresh beginRefreshing];//开始刷新
     [self SetNetworkDataAndpage:1];//重载数据
-    [self.refresh endRefreshing];    //结束刷新
+    [self.homeview.hometableview.mj_header endRefreshing];    //结束刷新
+}
+
+- (void)Loadmore{
+    Singleton *single = [[Singleton alloc] init];
+    NSMutableArray *array = @[].mutableCopy;
+    array = single.HomeArray.mutableCopy;
+    page++;
+    __weak typeof(self) weakSelf = self;
+    [self.networkdata LoadListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single=[[Singleton alloc] init];
+        single.HomeArray = (NSMutableArray *)dataArray;
+        [array addObjectsFromArray:single.HomeArray];
+        single.HomeArray = array;
+        [self.homeview.hometableview reloadData];
+        
+    } andpage:page];
 }
 
 //加载数据
