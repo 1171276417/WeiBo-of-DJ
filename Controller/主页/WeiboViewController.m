@@ -49,12 +49,17 @@
     Singleton *single=[[Singleton alloc] init];    //获取点击该cell的信息，转为模型，取得该cell的ID来载入评论
     GetListItem *list=[[GetListItem alloc] init];
     list=(GetListItem *)single.WeiboDictionary;
-    [self LoadCommentData:list.ID];
+    NSString *ID = [NSNumberFormatter localizedStringFromNumber:list.ID numberStyle:NSNumberFormatterNoStyle];
+    NSString *uid = list.uid.description;
+    [self LoadSelectionComment:ID andUid:uid];
+   // [self LoadCommentData:list.ID];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
+    
+    
 }
 
 - (void)loginURL{
@@ -94,6 +99,25 @@
     } andID:ID];
 }
 
+- (void)LoadSelectionComment:(NSString *)ID andUid:(NSString *)uid{
+    self.CommentData=[[NetworkData alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.CommentData LoadSelectionCommentBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single=[[Singleton alloc] init];
+        single.CommentArray=(NSMutableArray *)dataArray;
+        [strongSelf.weiboview.tableview reloadData];
+        NSLog(@"");
+    } andid:ID uid:uid];
+    
+    
+}
+
+
+
+
+
+
 /**刷新加载数据*/
 - (void)LoadupData{
     Singleton *single=[[Singleton alloc] init];    //获取点击该cell的信息，转为模型，取得该cell的ID来载入评论
@@ -117,14 +141,11 @@
     Singleton *single=[[Singleton alloc] init];
     /**第一行是微博内容*/
     if(indexPath.row==0){
-//        [self.homecell HomelayoutTableViewCellWithItem:(GetListItem *)single.WeiboDictionary];
-
-        return [self.weiboview.tableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.HomeArray[indexPath.row] keyPath:@"model" cellClass:[HomeTableViewCell class] contentViewWidth:self.view.bounds.size.width];
+        return [self.weiboview.tableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.WeiboDictionary keyPath:@"model" cellClass:[HomeTableViewCell class] contentViewWidth:self.view.bounds.size.width];
     }
     /**后面为评论区*/
     else {
-//        [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
-//        return self.commentcell.CommentCellHeight;
+
         return [self.weiboview.tableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.CommentArray[indexPath.row-1] keyPath:@"model" cellClass:[CommentTableViewCell class] contentViewWidth:390];
 
 
@@ -152,8 +173,7 @@
         if(!self.commentcell){
             self.commentcell=[[CommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDD];
         }
-//            [self.commentcell CommentlayoutCell:(GetListItem *)[single.CommentArray objectAtIndex:indexPath.row-1]];
-//        return self.commentcell;
+
         self.commentcell.model = (GetListItem *)single.CommentArray[indexPath.row-1];
         [self.commentcell useCellFrameCacheWithIndexPath:indexPath tableView:self.weiboview.tableview];
         return self.commentcell;

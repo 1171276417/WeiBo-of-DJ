@@ -63,9 +63,6 @@
     /**微博来源*/
     self.source.text=[self SetSource:item.source];
     
-    /**微博内容数据*/
-    self.text.text=item.text;
-    
     /**网页链接*/
     if([self isURL:(NSString *)item.text] == YES){
         self.URL.text = @"网页链接";
@@ -73,6 +70,17 @@
         }
     else
         self.URL.text = nil;
+    
+    /**微博内容数据*/
+    [item.text stringByRemovingPercentEncoding];
+//    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ qwertyuiopasdfghjklzxcvbnm\"?/1234567890QWERTYUIOPASDFGHJKLZXCVBNM.<>"];
+//    
+//    item.text = [[item.text componentsSeparatedByCharactersInSet: doNotWant]componentsJoinedByString: @""];
+    if(item.text_raw){
+        self.text.text = item.text_raw;
+    }
+    else
+        self.text.text=item.text;
     
     /**九宫格微博内容图片*/
     switch (item.pic_urls.count) {

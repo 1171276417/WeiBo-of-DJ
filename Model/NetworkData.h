@@ -16,12 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**定义一个block*/
 typedef void(^WeiboListItemLoadBlock)(NSArray<GetListItem *> *dataArray);//返回一个ListItem类型的数组
 typedef void(^CommentListItemLoadBlock)(NSArray<GetListItem *> *dataArray);//返回一个ListItem类型的数组
+typedef void(^SelectionListItemLoadBlock)(NSArray<GetListItem *> *dataArray);
+typedef void(^SelectionCommentBlock)(NSArray<GetListItem *> *dataArray);
+
 
 @interface NetworkData : NSObject
 
+
 - (void)LoadListDataBlock:(WeiboListItemLoadBlock)finishBlock andpage:(int)page;//获取微博数据
 - (void)LoadCommentListDataBlock:(CommentListItemLoadBlock)finishBlock andID:(NSNumber *)ID;//获取评论数据
-
+- (void)LoadSelectionListDataBlock:(SelectionListItemLoadBlock)finishBlock URL:(NSString *)URL andPage:(int)page;
+- (void)LoadSelectionCommentBlock:(SelectionCommentBlock)finishBlock andid:(NSString *)ID uid:(NSString *)uid;
 
 
 

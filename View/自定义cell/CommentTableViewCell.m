@@ -21,28 +21,23 @@
 - (void)LoadData:(GetListItem *)item{
   
     /**头像数据*/
-//    dispatch_queue_global_t downloadQueue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_queue_main_t mainQueue=dispatch_get_main_queue();
-//    dispatch_async(downloadQueue, ^{
-//        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.COMprofile_image_url]]];;
-//        dispatch_async(mainQueue, ^{
-//            self.profile_image_url.image=image;
-//        });
-//    });//异步加载图片
     [self.profile_image_url sd_setImageWithURL:[NSURL URLWithString:item.COMprofile_image_url] placeholderImage:[UIImage imageNamed:@"4"]];
 
-    
     /**昵称数据*/
     self.screen_name.text=item.COMscreen_name;
     self.screen_name.textColor=[UIColor orangeColor];
     
     /**发博时间数据*/
-    self.created_at.text=[self SetTimeString:item.COMcreated_at]; //item.COMcreated_at;
+    self.created_at.text=[self SetTimeString:item.COMcreated_at]; 
     
     /**微博来源*/
     self.source.text=[self SetSource:item.COMsource];
     /**微博内容数据*/
-    self.text.text=item.COMtext;
+    if(item.COMtext_raw){
+        self.text.text = item.COMtext_raw;
+    }
+    else
+        self.text.text=item.COMtext;
 }
 
 - (void)setModel:(GetListItem *)model{

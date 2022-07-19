@@ -36,7 +36,7 @@ extern int page = 1;
 
     //定时刷新 180s刷新一次
     __unused NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:360 target:self selector:@selector(LoadupData) userInfo:nil repeats:YES];
-    
+     
     //加载下拉刷新控件
     self.homeview.hometableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(LoadupData)];
     //上拉加载
@@ -208,5 +208,8 @@ extern int page = 1;
 
 }
 
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"x=%f,y=%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
+}
 
 @end

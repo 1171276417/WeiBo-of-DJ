@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,readwrite)NSString *created_at;//发博时间
 @property(nonatomic,copy,readwrite)NSString *source;//来源
 @property(nonatomic,copy,readwrite)NSString *text;//微博内容
+@property(nonatomic,copy,readwrite)NSString *text_raw;//微博内容1
+
 @property(nonatomic,copy,readwrite)NSString *thumbnail_pic;//缩略图url
 @property(nonatomic,copy,readwrite)NSString *bmiddle_pic;//中尺寸图片url
 @property(nonatomic,copy,readwrite)NSString *original_pic;//原图url
@@ -36,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,readwrite)NSNumber *favourites_count;//收藏数
 @property(nonatomic,copy,readwrite)NSString *created_atuser;//用户注册时间
 @property(nonatomic,copy,readwrite)NSString *verified;//是否为V
+@property(nonatomic,copy,readwrite)NSString *uid;//是否为V
+
 
 /**评论信息*/
 @property(nonatomic,copy,readwrite)NSString *COMscreen_name;//用户昵称
@@ -44,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,readwrite)NSString *COMtext;//评论内容
 @property(nonatomic,copy,readwrite)NSString *COMcreated_at;//评论时间
 @property(nonatomic,copy,readwrite)NSString *COMsource;//来源
+@property(nonatomic,copy,readwrite)NSString *COMtext_raw;//评论内容
 
 
 

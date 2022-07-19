@@ -19,6 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSMutableArray *CollectArray;//收藏数组
 @property(nonatomic,strong)NSMutableArray *SearchArray;//搜索结果数组
 
+
+
+@property(nonatomic,strong)NSDictionary *StorageDict; //储存以下数组的字典
+@property(nonatomic,strong)NSMutableArray *HotArray;//热门信息数组
+@property(nonatomic,strong)NSMutableArray *RecreationArray;//娱乐信息数组
+@property(nonatomic,strong)NSMutableArray *EmotionArray;//情感信息数组
+@property(nonatomic,strong)NSMutableArray *TravelArray;//旅游信息数组
+@property(nonatomic,strong)NSMutableArray *CartoonArray;//漫画信息数组
+
+
+
+
 @property(nonatomic,strong)NSString *URLString;
 
 

@@ -53,9 +53,7 @@
     single.PostArray=[[NSMutableArray alloc] init];
     single.HistoryArray=[[NSMutableArray alloc] init];
     single.CollectArray=[[NSMutableArray alloc] init];
-//    single.SearchArray=[[NSMutableArray alloc] init];
 
-    //添加到tabbarcontroller中
     [tabbarcontroller setViewControllers:@[homeVC,selectionVC,myVC]];
     _window.rootViewController=nav;
     

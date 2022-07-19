@@ -11,7 +11,11 @@
 #import "GetListItem.h"
 #import "HomeTableViewCell.h"
 #import "Singleton.h"
+#import "SDAutoLayout.h"
+#import "WeiboViewController.h"
+#import "MJRefresh.h"
 
+@class GetListItem;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectionViewController : UIViewController
@@ -19,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)SelectionView *selectionview;
 @property(nonatomic,strong)NetworkData *networkdata;
 @property(nonatomic,strong)HomeTableViewCell *homecell;
+@property(nonatomic,strong)UILabel *label;
 
 @end
 

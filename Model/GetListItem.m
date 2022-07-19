@@ -15,6 +15,8 @@
     self.created_at=[dictionary objectForKey:@"created_at"];
     self.source=[dictionary objectForKey:@"source"];
     self.text=[dictionary objectForKey:@"text"];
+    self.text_raw=[dictionary objectForKey:@"text_raw"];
+
     self.thumbnail_pic=[dictionary objectForKey:@"thumbnail_pic"];
     self.bmiddle_pic=[dictionary objectForKey:@"bmiddle_pic"];
     self.original_pic=[dictionary objectForKey:@"original_pic"];
@@ -35,6 +37,8 @@
     self.favourites_count=[[dictionary objectForKey:@"user"] objectForKey:@"favourites_count"];
     self.created_atuser=[[dictionary objectForKey:@"user"] objectForKey:@"created_atuser"];
     self.verified=[[dictionary objectForKey:@"user"] objectForKey:@"verified"];
+    self.uid=[[dictionary objectForKey:@"user"] objectForKey:@"id"];
+
 }
 
 //微博评论转模型
@@ -45,6 +49,8 @@
     self.COMcreated_at=[dictionary objectForKey:@"created_at"];
     self.COMsource=[dictionary objectForKey:@"source"];
     self.COMtext=[dictionary objectForKey:@"text"];
+    self.COMtext_raw=[dictionary objectForKey:@"text_raw"];
+
 }
 
 

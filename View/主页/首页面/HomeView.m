@@ -16,7 +16,7 @@
     _scrollview.pagingEnabled=YES;
     _scrollview.showsHorizontalScrollIndicator=NO;
 //    _scrollview.showsVerticalScrollIndicator=YES;
-    _scrollview.bounces=NO;//关闭弹簧效果
+    _scrollview.bounces=NO;//关闭弹簧效果 
     //首页微博
     _hometableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 390, self.bounds.size.height)];
     [_scrollview addSubview:_hometableview];
