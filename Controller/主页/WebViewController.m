@@ -20,46 +20,66 @@
     [super viewDidLoad];
 
     [self.view addSubview:({
-        self.webview=[[WKWebView alloc] initWithFrame:CGRectMake(0, 88, self.view.frame.size.width, self.view.frame.size.height-88)];
+        self.webview=[[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         self.webview;
     })];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(geturl:) name:@"传网址" object:nil];
+
     Singleton *single=[[Singleton alloc] init];
-    //single.URLString=@"http://t.cn/A6aYOG4D";
-    NSLog(@"%@",single.URLString);
-    NSLog(@"");
-//    NSString *URL1 = [single.URLString stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    NSString *URL2 = [URL1 stringByReplacingOccurrencesOfString:@"(" withString:@""];
-//    NSString *URL3 = [URL2 stringByReplacingOccurrencesOfString:@")" withString:@""];
-//    NSString *URL = [URL3 stringByReplacingOccurrencesOfString:@" withString:@""];
-    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
-    NSString *URL = [[single.URLString componentsSeparatedByCharactersInSet: doNotWant]componentsJoinedByString: @""];
+    GetListItem *list = [[GetListItem alloc] init];
+    list = (GetListItem *)single.WeiboDictionary;
+    
+    NSString *text = list.text;
+    
+    NSString *URL1 = [[NSString alloc]initWithData:[NSJSONSerialization dataWithJSONObject:[self getURLFromStr:text] options:0 error:nil] encoding:NSUTF8StringEncoding];
+   
+    NSString *URL2 = [URL1 stringByReplacingOccurrencesOfString:@"("withString:@""].mutableCopy;
+    NSString *URL3 = [URL2 stringByReplacingOccurrencesOfString:@")"withString:@""].mutableCopy;
+    NSString *URL4 = [URL3 stringByReplacingOccurrencesOfString:@"\\"withString:@" "].mutableCopy;
+    NSString *URL5 = [URL4 stringByReplacingOccurrencesOfString:@"\""withString:@""].mutableCopy;
+    NSString *URL6 = [URL5 stringByReplacingOccurrencesOfString:@"["withString:@""].mutableCopy;
+    NSString *URL7 = [URL6 stringByReplacingOccurrencesOfString:@"]"withString:@""].mutableCopy;
+    NSString *URL8 = [URL7 stringByReplacingOccurrencesOfString:@" "withString:@""].mutableCopy;
 
-    NSLog(@"%@",single.URLString);
-    NSLog(@"");
+    
     
 
-    NSLog(@"%@",single.URLString);
-
    
-    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URL]]];
+    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URL8]]];
 
 }
 
 
-- (void)geturl:(NSNotification*)notification{
-    
-//    Singleton *single=[[Singleton alloc] init];
-    
-    _urlstring=[notification.userInfo objectForKey:@"url"];
-    
-    NSLog(@"");
+- (NSArray*)getURLFromStr:(NSString *)string {
+    NSError *error;
+    //可以识别url的正则表达式
+    NSString *regulaStr = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regulaStr
+    options:NSRegularExpressionCaseInsensitive
+    error:&error];
+
+    NSArray *arrayOfAllMatches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+
+    //NSString *subStr;
+    NSMutableArray *arr=[[NSMutableArray alloc] init];
+
+    for (NSTextCheckingResult *match in arrayOfAllMatches){
+        NSString* substringForMatch;
+        substringForMatch = [string substringWithRange:match.range];
+        [arr addObject:substringForMatch];
+    }
+    return arr;
 }
 
-- (void)dealloc {
-    //移除所有通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-   
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+
 }
 
 

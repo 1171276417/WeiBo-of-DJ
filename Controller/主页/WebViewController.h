@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GetListItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)NSString *urlstring;
 
-- (void)geturl:(NSNotification*)notification;
 
 
 @end
