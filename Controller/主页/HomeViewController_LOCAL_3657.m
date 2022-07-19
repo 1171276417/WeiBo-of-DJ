@@ -68,11 +68,7 @@ extern int page = 1;
         [array addObjectsFromArray:single.HomeArray];
         single.HomeArray = array;
         [strongSelf.homeview.hometableview reloadData];
-<<<<<<< Updated upstream
         NSLog(@"");
-=======
-        
->>>>>>> Stashed changes
     } andpage:page];
 }
 

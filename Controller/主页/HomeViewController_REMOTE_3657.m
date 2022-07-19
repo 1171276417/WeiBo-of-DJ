@@ -68,11 +68,7 @@ extern int page = 1;
         [array addObjectsFromArray:single.HomeArray];
         single.HomeArray = array;
         [strongSelf.homeview.hometableview reloadData];
-<<<<<<< Updated upstream
-        NSLog(@"");
-=======
         
->>>>>>> Stashed changes
     } andpage:page];
 }
 
@@ -129,12 +125,8 @@ extern int page = 1;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     Singleton *single=[[Singleton alloc] init];
     if(tableView==_homeview.hometableview){
-//        [self.homecell HomelayoutTableViewCellWithItem:[single.HomeArray objectAtIndex:indexPath.row]];
-//        return self.homecell.HomeCellHeight;
-//        return [self.homeview.hometableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.HomeArray[indexPath.row] keyPath:@"model" cellClass:[CommentTableViewCell class] contentViewWidth:390];
-        return [self.homeview.hometableview cellHeightForIndexPath:indexPath model:(GetListItem *)single.HomeArray[indexPath.row] keyPath:@"model" cellClass:[HomeTableViewCell class] contentViewWidth:self.view.bounds.size.width];
-
-        
+        [self.homecell HomelayoutTableViewCellWithItem:[single.HomeArray objectAtIndex:indexPath.row]];
+        return self.homecell.HomeCellHeight;
     }
     else{
         [self.postcell PostlayoutCell:[single.PostArray objectAtIndex:indexPath.row]];
@@ -148,41 +140,19 @@ extern int page = 1;
     Singleton *single=[[Singleton alloc] init];
     NSLog(@"");
     if(tableView==_homeview.hometableview){
-//        static NSString *ID=@"";
-//        self.homecell=[tableView dequeueReusableCellWithIdentifier:ID];
-//
-//        if(self.homecell==nil){
-//            self.homecell=[[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-//        }
-//        else{
+        static NSString *ID=@"";
+        self.homecell=[tableView dequeueReusableCellWithIdentifier:ID];
+
+        if(self.homecell==nil){
+            self.homecell=[[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        else{
 //            while ([self.homecell.contentView.subviews lastObject]!=nil) {
 //              [(UIView*)[self.homecell.contentView.subviews lastObject] removeFromSuperview];//强制装换为UIView类型 ，移除所有子视图
 //                [self.homecell.contentView addSubview:self.homecell2];
-//            }
-//        }
-//        [self.homecell HomelayoutTableViewCellWithItem:(GetListItem *)[single.HomeArray objectAtIndex:indexPath.row]];
-//        return self.homecell;
-//
-        
-        static NSString *CellIdentifier = @"Cell";
-        self.homecell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-        if (self.homecell == nil) {
-        self.homecell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+            }
         [self.homecell HomelayoutTableViewCellWithItem:(GetListItem *)[single.HomeArray objectAtIndex:indexPath.row]];
         return self.homecell;
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
             
 
@@ -212,6 +182,23 @@ extern int page = 1;
   
 
 }
+
+////下拉加载
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    Singleton *single=[[Singleton alloc] init];
+//    NSMutableArray *listItemArray=@[].mutableCopy;
+//    for(int i=1;i<100;i++){
+//        if(indexPath.row==20*i-2&&single.HomeArray.count<=20*i){
+//            listItemArray=single.HomeArray;
+//            [self SetNetworkDataAndpage:i+1];
+//            [listItemArray addObject:single.HomeArray];
+//            single.HomeArray=listItemArray;
+//            NSLog(@"");
+//        }
+//    }
+//}
+
 
 
 @end
