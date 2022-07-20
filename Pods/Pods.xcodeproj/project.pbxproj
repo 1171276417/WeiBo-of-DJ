@@ -301,7 +301,7 @@
 		056800FF4F21BA84BD10E2DA3D3AE344 /* SDImageAssetManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageAssetManager.h; path = SDWebImage/Private/SDImageAssetManager.h; sourceTree = "<group>"; };
 		056982448937C0332D87A282ECEE50E1 /* SDWebImageIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageIndicator.m; path = SDWebImage/Core/SDWebImageIndicator.m; sourceTree = "<group>"; };
 		060BE41C42ECCC2E1486A2708F93430F /* SDAutoLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDAutoLayout-dummy.m"; sourceTree = "<group>"; };
-		066AA70A117C6246E305AB8AA68438DF /* Pods-微博4.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-微博4.0"; path = "libPods-微博4.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		066AA70A117C6246E305AB8AA68438DF /* libPods-微博4.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-微博4.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BBFE69060D4ED5BCA7C596142CB9B3 /* SDImageAPNGCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageAPNGCoder.h; path = SDWebImage/Core/SDImageAPNGCoder.h; sourceTree = "<group>"; };
 		07DF2F1877090D9659D25E59D142FA38 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		08FBE48C991670B0A10F01E805645529 /* UIView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
@@ -458,7 +458,7 @@
 		9AE5DF6F7F86B594311FF6CA1CA6EB0E /* SDAnimatedImagePlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAnimatedImagePlayer.m; path = SDWebImage/Core/SDAnimatedImagePlayer.m; sourceTree = "<group>"; };
 		9B19D256DB6DA7F1C878157D02CBF0D4 /* SDImageFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageFrame.h; path = SDWebImage/Core/SDImageFrame.h; sourceTree = "<group>"; };
 		9BFB9CB8ECB241FC0384C1573A2225F5 /* SDImageCachesManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCachesManager.m; path = SDWebImage/Core/SDImageCachesManager.m; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E584A9AF9379C2653899B618F523527 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		9F16C67C8F54C05A7D4A0FDA446A50C1 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		9FF1FED6F41FF23C4A6A908E85C110E6 /* NSButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSButton+WebCache.m"; path = "SDWebImage/Core/NSButton+WebCache.m"; sourceTree = "<group>"; };
@@ -688,7 +688,6 @@
 				792BF90FAD5901E35A0D207EB4F728B0 /* Resources */,
 				4AAD4E9A9831377B0016FC5E4C147939 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -756,7 +755,7 @@
 				A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking */,
 				1CB41E82D175604030503E0487ED6C09 /* BNDeepCopy */,
 				E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh */,
-				066AA70A117C6246E305AB8AA68438DF /* Pods-微博4.0 */,
+				066AA70A117C6246E305AB8AA68438DF /* libPods-微博4.0.a */,
 				2D24B4853EF5CE5AD7D4FA5E183BD6E2 /* SDAutoLayout */,
 				B0B214D775196BA7CA8E17E53048A493 /* SDWebImage */,
 			);
@@ -781,7 +780,6 @@
 				8B906F67304DA52210912F8B2C76C0F5 /* Core */,
 				6141DCD1C62A3015A21E088F7278B650 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -810,7 +808,6 @@
 				535F93574A063A74C0CA929BE946231A /* NSSet+BNDeepCopy.m */,
 				037DEE5A6CC0FA110C824052C884F1E9 /* Support Files */,
 			);
-			name = BNDeepCopy;
 			path = BNDeepCopy;
 			sourceTree = "<group>";
 		};
@@ -1002,7 +999,6 @@
 				6C0E144B7EFDD4896798BAAC84CFA38B /* UIView+SDAutoLayout.m */,
 				7047E012949E62406676A8F86A1A6F9A /* Support Files */,
 			);
-			name = SDAutoLayout;
 			path = SDAutoLayout;
 			sourceTree = "<group>";
 		};
@@ -1070,7 +1066,6 @@
 				335DEC5E34268824A175BD5A920BC8EF /* Support Files */,
 				ABDF735F0AED6FC5D5479C1D7FED2790 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1350,7 +1345,7 @@
 			);
 			name = "Pods-微博4.0";
 			productName = "Pods-微博4.0";
-			productReference = 066AA70A117C6246E305AB8AA68438DF /* Pods-微博4.0 */;
+			productReference = 066AA70A117C6246E305AB8AA68438DF /* libPods-微博4.0.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

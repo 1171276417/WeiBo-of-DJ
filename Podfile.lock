@@ -20,6 +20,7 @@ PODS:
   - SDWebImage (5.13.0):
     - SDWebImage/Core (= 5.13.0)
   - SDWebImage/Core (5.13.0)
+  - Weibo_SDK (3.3.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - MJRefresh
   - SDAutoLayout
   - SDWebImage
+  - Weibo_SDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
 
 SPEC REPOS:
   trunk:
@@ -36,13 +38,23 @@ SPEC REPOS:
     - SDAutoLayout
     - SDWebImage
 
+EXTERNAL SOURCES:
+  Weibo_SDK:
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
+CHECKOUT OPTIONS:
+  Weibo_SDK:
+    :commit: 8c1257845534fb19b4b9e240f99306a405ad3fea
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   BNDeepCopy: ce8471918e7e4ad4cd4e70bff19dd1182dc66004
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 0327043dbb9533e75f2eff8445b3df0f2ceca6ac
+  Weibo_SDK: 13a4e9b78db64f56eb68bfe4badde82750bb292f
 
-PODFILE CHECKSUM: 115e12eb78b4789e61f214b70a26d6db8fe3df31
+PODFILE CHECKSUM: 11e969f6ab7a01c0b8737e7696f925553f735b9a
 
 COCOAPODS: 1.11.3

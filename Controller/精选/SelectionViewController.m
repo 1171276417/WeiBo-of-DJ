@@ -20,7 +20,7 @@ extern int pager = 0;
     [super viewDidLoad];
 
     /**加载View*/
-    _selectionview=[[SelectionView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height)];
+    _selectionview=[[SelectionView alloc] initWithFrame:CGRectMake(0,88, self.view.frame.size.width, self.view.frame.size.height-88)];
     [_selectionview tableinit];
     _selectionview.HotTableView.delegate = self;
     _selectionview.HotTableView.dataSource = self;
@@ -80,77 +80,13 @@ extern int pager = 0;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    Singleton *single = [[Singleton alloc] init];
     [self SetNetworkAndURLHot:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&group_id=102803&containerid=102803&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:pager];
     [self SetNetworkAndURLRecreation:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&group_id=1028034288&containerid=102803_ctg1_4288_-_ctg1_4288&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:pager];
     [self SetNetworkAndURLEmotion:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&group_id=1028031988&containerid=102803_ctg1_1988_-_ctg1_1988&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:pager];
     [self SetNetworkAndURLTravel:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&group_id=1028032588&containerid=102803_ctg1_2588_-_ctg1_2588&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:pager];
     [self SetNetworkAndURLCartoon:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&group_id=1028032388&containerid=102803_ctg1_2388_-_ctg1_2388&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:pager];
-    NSLog(@"");
+    self.tabBarController.tabBar.hidden = NO;
 }
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    Singleton *single = [[Singleton alloc] init];
-    NSLog(@"");
-}
-
-- (void)SetNetworkAndURLHot:(NSString *)URL andPage:(int)page{
-    self.networkdata=[[NetworkData alloc] init];
-    __weak typeof(self) weakSelf = self;
-    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
-        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
-        Singleton *single = [[Singleton alloc] init];
-        single.HotArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.HotTableView reloadData];
-        NSLog(@"");
-    } URL:URL andPage:page];
-}
-
-- (void)SetNetworkAndURLRecreation:(NSString *)URL andPage:(int)page{
-    self.networkdata=[[NetworkData alloc] init];
-    __weak typeof(self) weakSelf = self;
-    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
-        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
-        Singleton *single = [[Singleton alloc] init];
-        single.RecreationArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.RecreationTableView reloadData];
-    } URL:URL andPage:page];
-}
-
-- (void)SetNetworkAndURLEmotion:(NSString *)URL andPage:(int)page{
-    self.networkdata=[[NetworkData alloc] init];
-    __weak typeof(self) weakSelf = self;
-    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
-        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
-        Singleton *single = [[Singleton alloc] init];
-        single.EmotionArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.EmotionTableView reloadData];
-    } URL:URL andPage:page];
-}
-
-- (void)SetNetworkAndURLTravel:(NSString *)URL andPage:(int)page{
-    self.networkdata=[[NetworkData alloc] init];
-    __weak typeof(self) weakSelf = self;
-    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
-        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
-        Singleton *single = [[Singleton alloc] init];
-        single.TravelArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.TravelTableView reloadData];
-    } URL:URL andPage:page];
-}
-
-- (void)SetNetworkAndURLCartoon:(NSString *)URL andPage:(int)page{
-    self.networkdata=[[NetworkData alloc] init];
-    __weak typeof(self) weakSelf = self;
-    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
-        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
-        Singleton *single = [[Singleton alloc] init];
-        single.CartoonArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.CartoonTableView reloadData];
-    } URL:URL andPage:page];
-}
-
-
 
 
 //设置行数
@@ -297,24 +233,62 @@ extern int pager = 0;
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
     NSLog(@"x=%f,y=%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
-//    if(scrollView.contentOffset.x == 390){
-//        [self SetNetworkAndURLRecreation:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028034288&containerid=102803_ctg1_4288_-_ctg1_4288&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:0];
-//        NSLog(@"");
-//    }
-//    if(scrollView.contentOffset.x == 390*2){
-//        [self SetNetworkAndURLEmotion:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028031988&containerid=102803_ctg1_1988_-_ctg1_1988&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:0];
-//    }
-//    if(scrollView.contentOffset.x == 390*3){
-//        [self SetNetworkAndURLTravel:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028032588&containerid=102803_ctg1_2588_-_ctg1_2588&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:0];
-//    }
-//    if(scrollView.contentOffset.x == 390*4){
-//        [self SetNetworkAndURLCartoon:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028032388&containerid=102803_ctg1_2388_-_ctg1_2388&extparam=discover%7Cnew_feed&max_id=0&count=10"andPage:0];
-//    }
-//
-
 }
 
+- (void)SetNetworkAndURLHot:(NSString *)URL andPage:(int)page{
+    self.networkdata=[[NetworkData alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single = [[Singleton alloc] init];
+        single.HotArray = (NSMutableArray *)dataArray;
+        [strongSelf.selectionview.HotTableView reloadData];
+    } URL:URL andPage:page];
+}
 
+- (void)SetNetworkAndURLRecreation:(NSString *)URL andPage:(int)page{
+    self.networkdata=[[NetworkData alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single = [[Singleton alloc] init];
+        single.RecreationArray = (NSMutableArray *)dataArray;
+        [strongSelf.selectionview.RecreationTableView reloadData];
+    } URL:URL andPage:page];
+}
+
+- (void)SetNetworkAndURLEmotion:(NSString *)URL andPage:(int)page{
+    self.networkdata=[[NetworkData alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single = [[Singleton alloc] init];
+        single.EmotionArray = (NSMutableArray *)dataArray;
+        [strongSelf.selectionview.EmotionTableView reloadData];
+    } URL:URL andPage:page];
+}
+
+- (void)SetNetworkAndURLTravel:(NSString *)URL andPage:(int)page{
+    self.networkdata=[[NetworkData alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single = [[Singleton alloc] init];
+        single.TravelArray = (NSMutableArray *)dataArray;
+        [strongSelf.selectionview.TravelTableView reloadData];
+    } URL:URL andPage:page];
+}
+
+- (void)SetNetworkAndURLCartoon:(NSString *)URL andPage:(int)page{
+    self.networkdata=[[NetworkData alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
+        __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
+        Singleton *single = [[Singleton alloc] init];
+        single.CartoonArray = (NSMutableArray *)dataArray;
+        [strongSelf.selectionview.CartoonTableView reloadData];
+    } URL:URL andPage:page];
+}
 
 
 @end
