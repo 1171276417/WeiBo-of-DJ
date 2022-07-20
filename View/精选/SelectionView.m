@@ -13,8 +13,7 @@
     
     _scrollview = [[UIScrollView alloc] init];
     _scrollview.frame = CGRectMake(0, 0, 390, self.bounds.size.height);
-    _scrollview.contentSize = CGSizeMake(390*5, self.bounds.size.height);
-    _scrollview.contentOffset = CGPointMake(50, 50);
+    _scrollview.contentSize = CGSizeMake(390*5, 0);
     [self addSubview:_scrollview];
     _scrollview.pagingEnabled = YES;
     _scrollview.showsHorizontalScrollIndicator = NO;
@@ -36,12 +35,12 @@
         [_scrollview addSubview:_HotTableView];
         //热门微博
         _RecreationTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width, 0, 390, self.frame.size.height)];
-        _RecreationTableView.backgroundColor = [UIColor orangeColor];
+        _RecreationTableView.backgroundColor = [UIColor grayColor];
 
         [_scrollview addSubview:_RecreationTableView];
         //热门微博
         _EmotionTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width*2, 0, 390, self.frame.size.height)];
-        _EmotionTableView.backgroundColor = [UIColor greenColor];
+        _EmotionTableView.backgroundColor = [UIColor grayColor];
 
         [_scrollview addSubview:_EmotionTableView];
         //热门微博
@@ -49,7 +48,7 @@
         [_scrollview addSubview:_TravelTableView];
         //热门微博
         _CartoonTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width*4, 0, self.frame.size.width, self.frame.size.height)];
-        _CartoonTableView.backgroundColor = [UIColor blueColor];
+        _CartoonTableView.backgroundColor = [UIColor grayColor];
         [_scrollview addSubview:_CartoonTableView];
     
     

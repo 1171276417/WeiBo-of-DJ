@@ -6,6 +6,7 @@
 //
 
 #import "SelectionViewController.h"
+#import "BNDeepCopy.h"
 
 @interface SelectionViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIScrollViewDelegate>
 
@@ -36,7 +37,7 @@ extern int pager = 0;
     _selectionview.CartoonTableView.delegate = self;
     _selectionview.CartoonTableView.dataSource = self;
     
-    _selectionview.searchview.delegate = self;
+    _selectionview.scrollview.delegate = self;
     [self.view addSubview:_selectionview];
     
     [_selectionview.Page setCurrentPage:0];
@@ -57,7 +58,8 @@ extern int pager = 0;
 - (void)Loadmore{
     Singleton *single = [[Singleton alloc] init];
     NSMutableArray *array = @[].mutableCopy;
-    array = single.HotArray.mutableCopy;
+   array = single.HotArray.mutableCopy;
+    
     pager++;
     __weak typeof(self) weakSelf = self;
     [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
@@ -111,7 +113,7 @@ extern int pager = 0;
         __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
         Singleton *single = [[Singleton alloc] init];
         single.RecreationArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.HotTableView reloadData];
+        [strongSelf.selectionview.RecreationTableView reloadData];
     } URL:URL andPage:page];
 }
 
@@ -122,7 +124,7 @@ extern int pager = 0;
         __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
         Singleton *single = [[Singleton alloc] init];
         single.EmotionArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.HotTableView reloadData];
+        [strongSelf.selectionview.EmotionTableView reloadData];
     } URL:URL andPage:page];
 }
 
@@ -133,7 +135,7 @@ extern int pager = 0;
         __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
         Singleton *single = [[Singleton alloc] init];
         single.TravelArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.HotTableView reloadData];
+        [strongSelf.selectionview.TravelTableView reloadData];
     } URL:URL andPage:page];
 }
 
@@ -144,7 +146,7 @@ extern int pager = 0;
         __strong typeof(weakSelf) strongSelf = weakSelf; //防止Block循环引用
         Singleton *single = [[Singleton alloc] init];
         single.CartoonArray = (NSMutableArray *)dataArray;
-        [strongSelf.selectionview.HotTableView reloadData];
+        [strongSelf.selectionview.CartoonTableView reloadData];
     } URL:URL andPage:page];
 }
 
@@ -291,25 +293,26 @@ extern int pager = 0;
         [self.navigationController pushViewController:weibo animated:YES];
     }
 }
-//
-//- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-//    NSLog(@"x=%f,y=%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
+
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"x=%f,y=%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
 //    if(scrollView.contentOffset.x == 390){
-//        [self SetNetworkAndURLRecreation:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028034288&containerid=102803_ctg1_4288_-_ctg1_4288&extparam=discover%7Cnew_feed&max_id=0&count=10"];
+//        [self SetNetworkAndURLRecreation:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028034288&containerid=102803_ctg1_4288_-_ctg1_4288&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:0];
 //        NSLog(@"");
 //    }
 //    if(scrollView.contentOffset.x == 390*2){
-//        [self SetNetworkAndURLEmotion:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028031988&containerid=102803_ctg1_1988_-_ctg1_1988&extparam=discover%7Cnew_feed&max_id=0&count=10"];
+//        [self SetNetworkAndURLEmotion:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028031988&containerid=102803_ctg1_1988_-_ctg1_1988&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:0];
 //    }
 //    if(scrollView.contentOffset.x == 390*3){
-//        [self SetNetworkAndURLTravel:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028032588&containerid=102803_ctg1_2588_-_ctg1_2588&extparam=discover%7Cnew_feed&max_id=0&count=10"];
+//        [self SetNetworkAndURLTravel:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028032588&containerid=102803_ctg1_2588_-_ctg1_2588&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:0];
 //    }
 //    if(scrollView.contentOffset.x == 390*4){
-//        [self SetNetworkAndURLCartoon:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028032388&containerid=102803_ctg1_2388_-_ctg1_2388&extparam=discover%7Cnew_feed&max_id=0&count=10"];
+//        [self SetNetworkAndURLCartoon:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&refresh=1&group_id=1028032388&containerid=102803_ctg1_2388_-_ctg1_2388&extparam=discover%7Cnew_feed&max_id=0&count=10"andPage:0];
 //    }
 //
-//
-//}
+
+}
 
 
 

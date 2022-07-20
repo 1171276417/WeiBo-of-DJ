@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UISearchController *searchController;
 @property(nonatomic,strong)GetListItem *list;
 @property(nonatomic,strong)ListTableViewCell *listcell;
+@property(nonatomic,strong)UISearchBar *searchBar;
 
 @end
 

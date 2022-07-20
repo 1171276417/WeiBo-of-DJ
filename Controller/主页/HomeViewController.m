@@ -106,6 +106,11 @@ extern int page = 1;
     //加载视图时候重新加载数据
     [self SetNetworkDataAndpage:1];
 
+    
+    id item = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/dengjie/Desktop/微博数据持久化/Weibo.txt"];
+    single.HistoryArray = (GetListItem *)item;
+    
+    
 }
 
 
@@ -204,6 +209,8 @@ extern int page = 1;
     
     [single.HistoryArray insertObject:[single.HomeArray objectAtIndex:indexPath.row] atIndex:0];
 
+    
+    
   
 
 }

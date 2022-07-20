@@ -9,7 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GetListItem : NSObject
+@interface GetListItem : NSObject <NSCoding,NSCopying>
+
 
 /**博客内容*/
 @property(nonatomic,copy,readwrite)NSString *created_at;//发博时间

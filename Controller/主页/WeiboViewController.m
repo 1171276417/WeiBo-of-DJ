@@ -58,8 +58,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
-    
-    
+    Singleton *single = [[Singleton alloc] init];
+    //将数据归档
+    [NSKeyedArchiver archiveRootObject:single.HistoryArray toFile:@"/Users/dengjie/Desktop/微博数据持久化/Weibo.txt"];
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:single.HistoryArray requiringSecureCoding:NO error:nil];
 }
 
 - (void)loginURL{
