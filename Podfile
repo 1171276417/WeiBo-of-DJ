@@ -3,4 +3,5 @@ target '微博4.0' do
   pod 'SDWebImage'
   pod 'SDAutoLayout'
   pod 'MJRefresh'
+  pod 'BNDeepCopy'
 end

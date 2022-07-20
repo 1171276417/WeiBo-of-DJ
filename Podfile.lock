@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - BNDeepCopy (1.0)
   - MJRefresh (3.7.5)
   - SDAutoLayout (2.2.1)
   - SDWebImage (5.13.0):
@@ -22,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - BNDeepCopy
   - MJRefresh
   - SDAutoLayout
   - SDWebImage
@@ -29,16 +31,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - BNDeepCopy
     - MJRefresh
     - SDAutoLayout
     - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  BNDeepCopy: ce8471918e7e4ad4cd4e70bff19dd1182dc66004
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 0327043dbb9533e75f2eff8445b3df0f2ceca6ac
 
-PODFILE CHECKSUM: 2045f0702dfa0aeb13bbfeeb13a8a8594e67936a
+PODFILE CHECKSUM: 115e12eb78b4789e61f214b70a26d6db8fe3df31
 
 COCOAPODS: 1.11.3
