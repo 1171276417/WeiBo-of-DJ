@@ -29,6 +29,7 @@
 		353A2C4128385DD30039B84A /* HistorySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 353A2C4028385DD30039B84A /* HistorySearchViewController.m */; };
 		353A2C4428385E070039B84A /* HistorySearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 353A2C4328385E070039B84A /* HistorySearchView.m */; };
 		353A2C47283864B00039B84A /* WeiboNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 353A2C46283864B00039B84A /* WeiboNavigationView.m */; };
+		35503697288BF3EC00DE5610 /* SelectionNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35503696288BF3EB00DE5610 /* SelectionNavigationView.m */; };
 		3560EED92836B25900D9EBF2 /* WeiboView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EED82836B25900D9EBF2 /* WeiboView.m */; };
 		3560EEDC2836B2A700D9EBF2 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEDB2836B2A700D9EBF2 /* CommentTableViewCell.m */; };
 		3560EEDF2836C85400D9EBF2 /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEDE2836C85400D9EBF2 /* NavigationBarView.m */; };
@@ -99,6 +100,8 @@
 		353A2C4328385E070039B84A /* HistorySearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistorySearchView.m; sourceTree = "<group>"; };
 		353A2C45283864B00039B84A /* WeiboNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboNavigationView.h; sourceTree = "<group>"; };
 		353A2C46283864B00039B84A /* WeiboNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboNavigationView.m; sourceTree = "<group>"; };
+		35503695288BF3EB00DE5610 /* SelectionNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectionNavigationView.h; sourceTree = "<group>"; };
+		35503696288BF3EB00DE5610 /* SelectionNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectionNavigationView.m; sourceTree = "<group>"; };
 		3560EED72836B25900D9EBF2 /* WeiboView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboView.h; sourceTree = "<group>"; };
 		3560EED82836B25900D9EBF2 /* WeiboView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboView.m; sourceTree = "<group>"; };
 		3560EEDA2836B2A700D9EBF2 /* CommentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 			children = (
 				35F3BD3628378A7300CDA475 /* SelectionView.h */,
 				35F3BD3728378A7300CDA475 /* SelectionView.m */,
+				35503695288BF3EB00DE5610 /* SelectionNavigationView.h */,
+				35503696288BF3EB00DE5610 /* SelectionNavigationView.m */,
 			);
 			path = "精选";
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				353A2C3228382A7A0039B84A /* SearchViewController.m in Sources */,
 				35248D3528368F94008FB8EB /* Singleton.m in Sources */,
 				35E7A4D92837A87E00B9BD6E /* CollectionViewController.m in Sources */,
+				35503697288BF3EC00DE5610 /* SelectionNavigationView.m in Sources */,
 				35C8E84C2885424B0006109A /* CommentCellModel.m in Sources */,
 				353A2C4128385DD30039B84A /* HistorySearchViewController.m in Sources */,
 				3560EEDC2836B2A700D9EBF2 /* CommentTableViewCell.m in Sources */,

@@ -42,7 +42,6 @@ extern int page = 1;
     //上拉加载
     self.homeview.hometableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loadmore)];
         
-
 }
 - (void)search{
     SearchViewController *search=[[SearchViewController alloc] init];

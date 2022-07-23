@@ -14,6 +14,7 @@
 #import "SDAutoLayout.h"
 #import "WeiboViewController.h"
 #import "MJRefresh.h"
+#import "SelectionNavigationView.h"
 
 @class GetListItem;
 NS_ASSUME_NONNULL_BEGIN
@@ -24,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NetworkData *networkdata;
 @property(nonatomic,strong)HomeTableViewCell *homecell;
 @property(nonatomic,strong)UILabel *label;
+@property(nonatomic,strong)SelectionNavigationView *navView;
+
+
 
 @end
 

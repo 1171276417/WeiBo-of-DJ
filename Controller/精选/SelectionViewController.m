@@ -41,7 +41,17 @@ extern int pager = 0;
     [self.view addSubview:_selectionview];
     
     [_selectionview.Page setCurrentPage:0];
-    [_selectionview.Page addTarget:self action:@selector(pagechange:) forControlEvents:UIControlEventValueChanged];
+    
+    /**加载NavigationBar*/
+    _navView=[[SelectionNavigationView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 96)];
+    [_navView SetNavigationBar];
+    [self.view addSubview:_navView];
+    [self.navView.btnHot addTarget:self action:@selector(btnHot)  forControlEvents:UIControlEventTouchUpInside];
+    [self.navView.btnRecreation addTarget:self action:@selector(btnRecreation)  forControlEvents:UIControlEventTouchUpInside];
+    [self.navView.btnEmotion addTarget:self action:@selector(btnEmotion)  forControlEvents:UIControlEventTouchUpInside];
+    [self.navView.btnTravel addTarget:self action:@selector(btnTravel)  forControlEvents:UIControlEventTouchUpInside];
+    [self.navView.btnCartoon addTarget:self action:@selector(btnCartoon)  forControlEvents:UIControlEventTouchUpInside];
+
     
     
     //加载下拉刷新控件
@@ -59,7 +69,7 @@ extern int pager = 0;
     Singleton *single = [[Singleton alloc] init];
     NSMutableArray *array = @[].mutableCopy;
    array = single.HotArray.mutableCopy;
-    
+        
     pager++;
     __weak typeof(self) weakSelf = self;
     [self.networkdata LoadSelectionListDataBlock:^(NSArray<GetListItem *> * _Nonnull dataArray) {
@@ -70,11 +80,50 @@ extern int pager = 0;
         single.HotArray = array;
         [strongSelf.selectionview.HotTableView reloadData];
     } URL:@"https://weibo.com/ajax/feed/hottimeline?since_id=0&group_id=102803&containerid=102803&extparam=discover%7Cnew_feed&max_id=0&count=10" andPage:pager];
-    
-    
-    
+}
+
+- (void)btnHot{
+    self.selectionview.scrollview.contentOffset = CGPointMake(0, 0);
+    self.navView.slide1.backgroundColor = [UIColor orangeColor];
+    self.navView.slide2.backgroundColor = [UIColor whiteColor];
+    self.navView.slide3.backgroundColor = [UIColor whiteColor];
+    self.navView.slide4.backgroundColor = [UIColor whiteColor];
+    self.navView.slide5.backgroundColor = [UIColor whiteColor];
+}
+- (void)btnRecreation{
+    self.selectionview.scrollview.contentOffset = CGPointMake(390, 0);
+    self.navView.slide1.backgroundColor = [UIColor whiteColor];
+    self.navView.slide2.backgroundColor = [UIColor orangeColor];
+    self.navView.slide3.backgroundColor = [UIColor whiteColor];
+    self.navView.slide4.backgroundColor = [UIColor whiteColor];
+    self.navView.slide5.backgroundColor = [UIColor whiteColor];
     
 }
+- (void)btnEmotion{
+    self.selectionview.scrollview.contentOffset = CGPointMake(390*2, 0);
+    self.navView.slide1.backgroundColor = [UIColor whiteColor];
+    self.navView.slide2.backgroundColor = [UIColor whiteColor];
+    self.navView.slide3.backgroundColor = [UIColor orangeColor];
+    self.navView.slide4.backgroundColor = [UIColor whiteColor];
+    self.navView.slide5.backgroundColor = [UIColor whiteColor];
+}
+- (void)btnTravel{
+    self.selectionview.scrollview.contentOffset = CGPointMake(390*3, 0);
+    self.navView.slide1.backgroundColor = [UIColor whiteColor];
+    self.navView.slide2.backgroundColor = [UIColor whiteColor];
+    self.navView.slide3.backgroundColor = [UIColor whiteColor];
+    self.navView.slide4.backgroundColor = [UIColor orangeColor];
+    self.navView.slide5.backgroundColor = [UIColor whiteColor];
+}
+- (void)btnCartoon{
+    self.selectionview.scrollview.contentOffset = CGPointMake(390*4, 0);
+    self.navView.slide1.backgroundColor = [UIColor whiteColor];
+    self.navView.slide2.backgroundColor = [UIColor whiteColor];
+    self.navView.slide3.backgroundColor = [UIColor whiteColor];
+    self.navView.slide4.backgroundColor = [UIColor whiteColor];
+    self.navView.slide5.backgroundColor = [UIColor orangeColor];
+}
+
 
 
 
