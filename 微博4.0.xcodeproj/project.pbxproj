@@ -36,6 +36,11 @@
 		3560EEE52836C95700D9EBF2 /* PostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEE42836C95700D9EBF2 /* PostView.m */; };
 		3560EEE82836CA1500D9EBF2 /* PostNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEE72836CA1500D9EBF2 /* PostNavigationView.m */; };
 		3560EEEB2836D37B00D9EBF2 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560EEEA2836D37B00D9EBF2 /* PostTableViewCell.m */; };
+		3568A1EA288BD77800D78A5D /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3568A1E9288BD77800D78A5D /* libAFNetworking.a */; };
+		3568A1EC288BD77800D78A5D /* libBNDeepCopy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3568A1EB288BD77800D78A5D /* libBNDeepCopy.a */; };
+		3568A1F0288BD77800D78A5D /* libMJRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3568A1EF288BD77800D78A5D /* libMJRefresh.a */; };
+		3568A1F2288BD77800D78A5D /* libSDAutoLayout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3568A1F1288BD77800D78A5D /* libSDAutoLayout.a */; };
+		3568A1F4288BD77800D78A5D /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3568A1F3288BD77800D78A5D /* libSDWebImage.a */; };
 		35C8E84328844A670006109A /* PostCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84228844A670006109A /* PostCommentView.m */; };
 		35C8E84628844A860006109A /* PostCommentNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84528844A860006109A /* PostCommentNavigationView.m */; };
 		35C8E84928844AEA0006109A /* PostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C8E84828844AEA0006109A /* PostCommentViewController.m */; };
@@ -48,7 +53,6 @@
 		35E7A4E62837AA8600B9BD6E /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7A4E52837AA8600B9BD6E /* ListTableViewCell.m */; };
 		35F3BD3528377B1900CDA475 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3BD3428377B1900CDA475 /* WebViewController.m */; };
 		35F3BD3828378A7300CDA475 /* SelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3BD3728378A7300CDA475 /* SelectionView.m */; };
-		81937813F3C0B1D7717FE806 /* libPods-微博4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF43B4782D43F721CD8C05 /* libPods-微博4.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +113,12 @@
 		3560EEE72836CA1500D9EBF2 /* PostNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostNavigationView.m; sourceTree = "<group>"; };
 		3560EEE92836D37B00D9EBF2 /* PostTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
 		3560EEEA2836D37B00D9EBF2 /* PostTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		3568A1E9288BD77800D78A5D /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3568A1EB288BD77800D78A5D /* libBNDeepCopy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBNDeepCopy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3568A1ED288BD77800D78A5D /* libPods-微博4.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-微博4.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3568A1EF288BD77800D78A5D /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3568A1F1288BD77800D78A5D /* libSDAutoLayout.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSDAutoLayout.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3568A1F3288BD77800D78A5D /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C8E84128844A670006109A /* PostCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCommentView.h; sourceTree = "<group>"; };
 		35C8E84228844A670006109A /* PostCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCommentView.m; sourceTree = "<group>"; };
 		35C8E84428844A860006109A /* PostCommentNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCommentNavigationView.h; sourceTree = "<group>"; };
@@ -142,7 +152,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81937813F3C0B1D7717FE806 /* libPods-微博4.0.a in Frameworks */,
+				3568A1EA288BD77800D78A5D /* libAFNetworking.a in Frameworks */,
+				3568A1EC288BD77800D78A5D /* libBNDeepCopy.a in Frameworks */,
+				3568A1F0288BD77800D78A5D /* libMJRefresh.a in Frameworks */,
+				3568A1F2288BD77800D78A5D /* libSDAutoLayout.a in Frameworks */,
+				3568A1F4288BD77800D78A5D /* libSDWebImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +374,12 @@
 		79D1C474C6EB459F14343F79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3568A1E9288BD77800D78A5D /* libAFNetworking.a */,
+				3568A1EB288BD77800D78A5D /* libBNDeepCopy.a */,
+				3568A1ED288BD77800D78A5D /* libPods-微博4.0.a */,
+				3568A1EF288BD77800D78A5D /* libMJRefresh.a */,
+				3568A1F1288BD77800D78A5D /* libSDAutoLayout.a */,
+				3568A1F3288BD77800D78A5D /* libSDWebImage.a */,
 				08EF43B4782D43F721CD8C05 /* libPods-微博4.0.a */,
 			);
 			name = Frameworks;
