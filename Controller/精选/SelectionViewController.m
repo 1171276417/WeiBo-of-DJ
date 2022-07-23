@@ -281,7 +281,41 @@ extern int pager = 0;
 
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"x=%f,y=%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
+   if(scrollView.contentOffset.x==0){
+        self.navView.slide1.backgroundColor = [UIColor orangeColor];
+        self.navView.slide2.backgroundColor = [UIColor whiteColor];
+        self.navView.slide3.backgroundColor = [UIColor whiteColor];
+        self.navView.slide4.backgroundColor = [UIColor whiteColor];
+        self.navView.slide5.backgroundColor = [UIColor whiteColor];
+    };
+    if(scrollView.contentOffset.x==390){
+        self.navView.slide1.backgroundColor = [UIColor whiteColor];
+        self.navView.slide2.backgroundColor = [UIColor orangeColor];
+        self.navView.slide3.backgroundColor = [UIColor whiteColor];
+        self.navView.slide4.backgroundColor = [UIColor whiteColor];
+        self.navView.slide5.backgroundColor = [UIColor whiteColor];
+    };
+    if(scrollView.contentOffset.x==390*2){
+        self.navView.slide1.backgroundColor = [UIColor whiteColor];
+        self.navView.slide2.backgroundColor = [UIColor whiteColor];
+        self.navView.slide3.backgroundColor = [UIColor orangeColor];
+        self.navView.slide4.backgroundColor = [UIColor whiteColor];
+        self.navView.slide5.backgroundColor = [UIColor whiteColor];
+    };
+    if(scrollView.contentOffset.x==390*3){
+        self.navView.slide1.backgroundColor = [UIColor whiteColor];
+        self.navView.slide2.backgroundColor = [UIColor whiteColor];
+        self.navView.slide3.backgroundColor = [UIColor whiteColor];
+        self.navView.slide4.backgroundColor = [UIColor orangeColor];
+        self.navView.slide5.backgroundColor = [UIColor whiteColor];
+    };
+    if(scrollView.contentOffset.x==390*4){
+        self.navView.slide1.backgroundColor = [UIColor whiteColor];
+        self.navView.slide2.backgroundColor = [UIColor whiteColor];
+        self.navView.slide3.backgroundColor = [UIColor whiteColor];
+        self.navView.slide4.backgroundColor = [UIColor whiteColor];
+        self.navView.slide5.backgroundColor = [UIColor orangeColor];
+    };
 }
 
 - (void)SetNetworkAndURLHot:(NSString *)URL andPage:(int)page{

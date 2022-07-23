@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)SelectionNavigationView *navView;
 
 
-
 @end
 
 NS_ASSUME_NONNULL_END

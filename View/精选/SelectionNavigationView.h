@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIButton *btnEmotion;
 @property(nonatomic,strong)UIButton *btnTravel;
 @property(nonatomic,strong)UIButton *btnCartoon;
-
 @property(nonatomic,strong)UIView *slide1;
 @property(nonatomic,strong)UIView *slide2;
 @property(nonatomic,strong)UIView *slide3;

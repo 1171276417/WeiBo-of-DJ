@@ -18,7 +18,7 @@
     _scrollview.pagingEnabled = YES;
     _scrollview.showsHorizontalScrollIndicator = NO;
     _scrollview.showsVerticalScrollIndicator = NO;
-    _scrollview.bounces = NO;
+    _scrollview.bounces = YES;
     
     //分页
     _Page = [[UIPageControl alloc] initWithFrame:CGRectMake(10, self.bounds.size.height-200 , self.bounds.size.width-20, 100)];
